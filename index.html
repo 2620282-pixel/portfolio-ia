@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Portfólio de projetos feitos com inteligência artificial, de Fabiano Nicaretta.">
+<title>Galeria Fabiano Nicaretta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap">
+<style>
+/* Layout: um campo de areia morna onde as cartas flutuam em arco sob o título leve; molduras de linha fina e cantos arredondados; abaixo, um índice em caixas contornadas com os links e os PDFs. */
+:root{
+  --areia:#E5D6C8; --nevoa:#DEDCDA; --papel:#EFE8E1; --tinta:#1E1A17; --apoio:#5F574F; --linha:#1E1A17; --linha-suave:#BFB3A7;
+  --pessego:#F0A27E; --rosa:#E98FA6; --coral:#E07A62;
+  --duo-claro:#F8EAE0; --duo-escuro:#D9705A;
+  --f:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --areia:#221D19; --nevoa:#1A1715; --papel:#2A2420; --tinta:#EDE6DF; --apoio:#B3A89D; --linha:#EDE6DF; --linha-suave:#4C433C;
+  --pessego:#F0A27E; --rosa:#E98FA6; --coral:#F08C74; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --areia:#221D19; --nevoa:#1A1715; --papel:#2A2420; --tinta:#EDE6DF; --apoio:#B3A89D; --linha:#EDE6DF; --linha-suave:#4C433C;
+  --pessego:#F0A27E; --rosa:#E98FA6; --coral:#F08C74; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--nevoa);background-image:linear-gradient(180deg,var(--areia) 0,var(--nevoa) 900px);color:var(--tinta);font:300 16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+:focus-visible{outline:1.5px solid var(--tinta);outline-offset:3px}
+a{color:inherit}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.rotulo{font:400 11px/1.35 var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--tinta)}
+.rotulo::before{content:"• "}
+
+/* topo: marca em caixas segmentadas, como uma etiqueta de laboratório */
+.topo{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:20px 0}
+.identidade{display:inline-grid;gap:6px}
+.marca{display:flex}
+.contato{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-left:11px}
+.email{font:300 13px/1.2 var(--f);letter-spacing:.01em;color:var(--apoio);user-select:all;-webkit-user-select:all}
+.copiar{border:1px solid var(--linha-suave);border-radius:999px;background:transparent;color:var(--apoio);padding:3px 8px;font:400 9.5px/1 var(--f);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.copiar:hover{background:var(--tinta);color:var(--papel)}
+.marca span{border:1px solid var(--linha);padding:5px 10px;font:400 19px/1.1 var(--f);letter-spacing:-.02em}
+.marca span+span{margin-left:-1px}
+.marca span:first-child{border-radius:6px 0 0 6px;font-weight:500}
+.marca span:last-child{border-radius:0 6px 6px 0}
+.pilula{border:1px solid var(--linha);border-radius:999px;padding:8px 18px;font:400 12px/1 var(--f);letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+a.pilula:hover{background:var(--tinta);color:var(--papel)}
+.nav{display:flex;flex-wrap:wrap}
+.nav .pilula+.pilula{margin-left:-1px}
+
+/* mesa (canvas arrastável) */
+.mesa{position:relative;height:min(84vh,760px);min-height:600px;overflow:hidden;cursor:grab;touch-action:none;user-select:none}
+.mesa.arrastando{cursor:grabbing}
+.plano{position:absolute;left:50%;top:50%;width:0;height:0;will-change:transform}
+.centro{position:absolute;top:-200px;transform:translate(-50%,-50%);text-align:center;width:560px;pointer-events:none}
+.centro h1{font:300 clamp(60px,7.4vw,104px)/.95 var(--f);letter-spacing:-.045em;margin:0}
+.centro p{margin:16px auto 0;max-width:32ch;color:var(--apoio);font-size:17px;line-height:1.4;text-wrap:balance}
+.dica{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);white-space:nowrap;color:var(--apoio)}
+
+.carta{position:absolute;width:172px;transform:translate(-50%,-50%);border:0;padding:0;background:none;text-align:left;cursor:pointer;color:inherit;font:inherit}
+.carta .face{position:relative;display:flex;flex-direction:column;aspect-ratio:5/8;background:var(--cor);color:var(--tinta-carta);border:1px solid var(--linha);border-radius:22px;padding:12px;gap:10px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.carta:hover .face,.carta:focus-visible .face{transform:translateY(-6px)}
+.carta .legenda{display:block;margin-top:10px;padding-left:4px;font:400 10.5px/1.35 var(--f);letter-spacing:.05em;color:var(--apoio);text-transform:uppercase}
+.portal{position:relative;width:100%;aspect-ratio:1/1;border-radius:999px 999px 12px 12px;overflow:hidden;background:var(--duo-claro);isolation:isolate}
+.portal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(1.05);mix-blend-mode:multiply}
+.portal::after{content:"";position:absolute;inset:0;background:var(--duo-escuro);mix-blend-mode:lighten}
+.portal .palavra{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font:400 22px/1 var(--f);letter-spacing:.02em;color:#1E1A17;background:linear-gradient(160deg,#F6C2A6,#EBA3B4)}
+.portal:has(.palavra)::after{display:none}
+.carta h2{font:400 20px/1.05 var(--f);letter-spacing:-.03em;margin:auto 0 0;text-wrap:balance}
+.carta .tipo{font:400 9.5px/1.3 var(--f);letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.carta .linha-tipo{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.selo{flex:none;border:1px solid currentColor;border-radius:999px;padding:3px 7px;font:400 9px/1 var(--f);letter-spacing:.06em;white-space:nowrap}
+
+/* série de cores das cartas: mesma grade, tom muda */
+.c-pessego{--cor:#F2B79B;--tinta-carta:#1E1A17}
+.c-rosa{--cor:#EDB1BF;--tinta-carta:#1E1A17}
+.c-areia{--cor:#EFE6DC;--tinta-carta:#1E1A17}
+.c-nevoa{--cor:#DAD6D2;--tinta-carta:#1E1A17}
+.c-tinta{--cor:#1E1A17;--tinta-carta:#EFE6DC}
+.c-ocre{--cor:#EDD3A0;--tinta-carta:#1E1A17}
+
+/* índice */
+.indice{padding-block:clamp(48px,7vw,88px)}
+.indice .inner{max-width:1080px;margin:0 auto}
+.cabeca{border:1px solid var(--linha);border-radius:28px;padding:clamp(22px,4vw,36px);margin-bottom:14px;display:grid;gap:14px}
+.indice h2{font:300 clamp(36px,5vw,60px)/1 var(--f);letter-spacing:-.04em;margin:0;text-wrap:balance}
+.indice .lead{color:var(--apoio);max-width:58ch;margin:0}
+.linhas{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.linha{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.1fr) minmax(0,.8fr) auto;gap:12px 24px;align-items:center;padding:18px 22px;border:1px solid var(--linha);border-radius:22px}
+.linha h3{font:400 22px/1.15 var(--f);letter-spacing:-.025em;margin:0}
+.linha h3 button{all:unset;cursor:pointer}
+.linha h3 button:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.linha h3 button:focus-visible{outline:1.5px solid var(--tinta);outline-offset:3px}
+.linha p{margin:0;font-size:14px;color:var(--apoio);line-height:1.45}
+.acoes{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;font:400 12px/1 var(--f);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;white-space:nowrap;border:1px solid var(--linha);color:var(--tinta);background:transparent;cursor:pointer}
+.btn.cheio{background:var(--tinta);color:var(--papel)}
+.btn.cheio:hover{background:var(--coral);border-color:var(--coral);color:#1E1A17}
+.btn:not(.cheio):not(.vazio):hover{background:var(--pessego);color:#1E1A17}
+.btn.vazio{border-style:dashed;border-color:var(--linha-suave);color:var(--apoio);cursor:default}
+@media (max-width:860px){.linha{grid-template-columns:1fr;gap:8px}.acoes{justify-content:flex-start;margin-top:6px}}
+
+.rodape{padding-block:28px 40px;display:flex;justify-content:flex-end;gap:16px;flex-wrap:wrap;border-top:1px solid var(--linha-suave)}
+.rodape p{margin:0;font-size:13px;color:var(--apoio)}
+
+/* ficha do projeto */
+dialog.ficha{border:1px solid var(--linha);border-radius:28px;padding:0;width:min(860px,calc(100% - 32px));max-height:calc(100% - 32px);background:var(--papel);color:var(--tinta);overflow:auto}
+dialog.ficha::backdrop{background:color-mix(in srgb,#1E1A17 45%,transparent);backdrop-filter:blur(3px)}
+.ficha-grade{display:grid;grid-template-columns:230px minmax(0,1fr)}
+.ficha-arte{padding:18px;background:var(--cor);display:flex;align-items:flex-start;border-right:1px solid var(--linha)}
+.ficha-arte .portal{position:sticky;top:18px}
+.ficha-arte .portal{width:100%}
+.ficha-corpo{padding:30px 30px 26px;display:grid;gap:16px;align-content:start;min-width:0}
+.ficha-corpo h2{font:300 clamp(32px,4.4vw,46px)/1 var(--f);letter-spacing:-.04em;margin:0;text-wrap:balance}
+.ficha-corpo p{margin:0;color:var(--apoio);max-width:56ch}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:14px}
+.meta dt{font:400 11px/1.9 var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--apoio)}
+.meta dd{margin:0;font-weight:400}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.tags li{font:400 12px/1 var(--f);padding:7px 11px;border-radius:999px;border:1px solid var(--linha-suave)}
+.bloco{border-top:1px solid var(--linha-suave);padding-top:16px;display:grid;gap:10px}
+.docs{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.docs a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--linha);border-radius:14px;text-decoration:none;font-size:14px;font-weight:400}
+.docs a:hover{background:var(--pessego);color:#1E1A17}
+.docs small{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:inherit;opacity:.7;white-space:nowrap}
+.midia{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.midia a{display:block;border:1px solid var(--linha);border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:var(--areia)}
+.midia img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.midia a:hover img{transform:scale(1.05)}
+.specs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.specs li{border:1px solid var(--linha-suave);border-radius:14px;padding:12px 14px;display:grid;gap:6px}
+.specs h4{margin:0;font:500 15px/1.25 var(--f);letter-spacing:-.01em}
+.specs p{font-size:13.5px;line-height:1.45;margin:0}
+.specs dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 12px;margin:2px 0 0;font-size:13px}
+.specs dt{font:400 10.5px/1.7 var(--f);letter-spacing:.06em;text-transform:uppercase;color:var(--apoio)}
+.specs dd{margin:0}
+.video{width:100%;max-width:100%;border:1px solid var(--linha);border-radius:16px;background:#000;display:block}
+.fechar{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);font:300 20px/1 var(--f);cursor:pointer}
+@media (max-width:640px){.ficha-grade{grid-template-columns:1fr}.ficha-arte{padding:16px;border-right:0;border-bottom:1px solid var(--linha)}.ficha-arte .portal{max-width:200px}.ficha-corpo{padding:22px 18px 22px}}
+
+/* leitor de documentos e imagens, dentro da própria galeria */
+dialog.leitor{border:1px solid var(--linha);border-radius:24px;padding:0;width:min(1100px,calc(100% - 24px));height:calc(100% - 24px);max-height:none;background:var(--papel);color:var(--tinta);overflow:hidden}
+dialog.leitor[open]{display:flex;flex-direction:column}
+dialog.leitor::backdrop{background:color-mix(in srgb,#1E1A17 55%,transparent);backdrop-filter:blur(3px)}
+.leitor-topo{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--linha);flex-wrap:wrap}
+.leitor-topo h3{margin:0;font:400 18px/1.2 var(--f);letter-spacing:-.02em;flex:1;min-width:0}
+.leitor-topo .rotulo{color:var(--apoio)}
+.leitor-topo .fechar{position:static}
+.leitor-corpo{flex:1;overflow:auto;padding:16px;display:grid;gap:14px;justify-items:center;align-content:start;background:var(--nevoa)}
+.leitor-corpo canvas,.leitor-corpo img{display:block;max-width:100%;height:auto;border-radius:10px;border:1px solid var(--linha-suave);background:#fff}
+.leitor-corpo.pagina{display:block;padding:0;overflow:hidden;background:#0a0a0a}
+.leitor-corpo iframe{display:block;width:100%;height:100%;border:0}
+.leitor-aviso{margin:auto;color:var(--apoio);font-size:14px;text-align:center;max-width:42ch}
+.docs button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--linha);border-radius:14px;font-size:14px;cursor:pointer}
+.docs button:hover{background:var(--pessego);color:#1E1A17}
+.docs button:focus-visible{outline:1.5px solid var(--tinta);outline-offset:2px}
+.midia button{all:unset;box-sizing:border-box;display:block;border:1px solid var(--linha);border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:var(--areia);cursor:zoom-in}
+.midia button:hover img{transform:scale(1.05)}
+.midia button:focus-visible{outline:1.5px solid var(--tinta);outline-offset:2px}
+
+.dica-toque{display:none}
+/* indicador de rolagem da ficha: só no celular, some quando a pessoa começa a rolar */
+.rolagem{display:none}
+@keyframes descer{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+/* celular: a mesa vira uma grade de cartas */
+@media (max-width:760px){
+  .carta .linha-tipo{flex-wrap:wrap}
+  .mesa{height:auto;min-height:0;overflow:visible;cursor:auto;touch-action:auto;padding-block:28px 40px}
+  .plano{position:static;width:auto;height:auto;transform:none!important;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .centro{position:static;transform:none;width:auto;grid-column:1/-1;text-align:left;margin-bottom:8px}
+  .centro p{margin-left:0}
+  .carta{position:static;width:auto;transform:none}
+  .dica{display:none}
+  .dica-toque{display:block;margin-top:14px;color:var(--apoio)}
+  /* cabeçalho em duas linhas: marca + candidatura, depois e-mail + índice */
+  .topo{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px 8px;padding-block:16px 0}
+  .identidade,.nav{display:contents}
+  .marca{grid-area:1/1/2/2}
+  .marca span{font-size:clamp(13px,4.2vw,18px);padding:5px clamp(6px,2.2vw,10px)}
+  .contato{grid-area:2/1/3/4;justify-content:flex-start;padding-left:0;min-width:0}
+  .email{font-size:clamp(10.5px,3.4vw,12.5px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .nav .pilula.nav-galeria,.nav .pilula.nav-indice,.nav-extra{display:none}
+  .nav .pilula{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 clamp(10px,3.2vw,12px);font-size:10.5px;white-space:nowrap;margin:0!important;justify-self:end}
+  .contato{gap:8px}
+  .nav-candidatura{grid-area:1/2/2/4}
+  .copiar{padding:7px 9px;font-size:9.5px}
+  .btn{min-height:44px;padding-inline:18px}
+  .fechar{width:44px;height:44px}
+  /* o botão de fechar acompanha a rolagem da ficha */
+  dialog.ficha .fechar{position:sticky;top:12px;display:block;margin:12px 12px -56px auto;z-index:3}
+  .rolagem{position:sticky;bottom:14px;z-index:3;display:flex;align-items:center;gap:6px;width:max-content;margin:-46px auto 14px;padding:8px 14px;border:1px solid var(--linha);border-radius:999px;background:var(--papel);color:var(--tinta);font:400 10.5px/1 var(--f);letter-spacing:.06em;text-transform:uppercase;pointer-events:none;transition:opacity .3s}
+  .rolagem svg{animation:descer 1.4s ease-in-out infinite}
+  .rolagem.oculta{opacity:0}
+}
+/* toque: o mesmo retorno visual do hover */
+a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:var(--papel)}
+.btn:not(.cheio):not(.vazio):active,.docs button:active{background:var(--pessego);color:#1E1A17}
+.carta:active .face{transform:translateY(-4px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.carta .face{transition:none}.rolagem svg{animation:none}}
+</style>
+
+<header class="topo gutter">
+  <div class="identidade">
+    <div class="marca" aria-label="Fabiano Nicaretta"><span>FN</span><span>Fabiano</span><span>Nicaretta</span></div>
+    <div class="contato">
+      <span class="email" id="email">fabianonicaretta@gmail.com</span>
+      <button type="button" class="copiar" id="copiar">Copiar</button>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Seções">
+    <a class="pilula nav-galeria" href="#mesa">Galeria</a>
+    <a class="pilula nav-indice" href="#indice">Índice</a>
+    <a class="pilula nav-candidatura" href="https://softplantrainee.gupy.io/" target="_blank" rel="noopener">Candidatura<span class="nav-extra"> · Trainee</span> ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="mesa gutter" id="mesa" aria-label="Galeria de projetos">
+    <div class="plano" id="plano">
+      <div class="centro">
+        <h1>Galeria</h1>
+        <p>Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado.</p>
+        <span class="rotulo dica-toque">Toque numa carta para abrir o projeto</span>
+      </div>
+    </div>
+    <span class="dica rotulo">Arraste para explorar · clique numa carta para abrir</span>
+  </section>
+
+  <section class="indice gutter" id="indice" aria-labelledby="indice-titulo">
+    <div class="inner">
+      <div class="cabeca">
+        <span class="rotulo">Índice</span>
+        <h2 id="indice-titulo">Projetos e documentos</h2>
+        <p class="lead">Cada linha leva ao projeto publicado e aos documentos de apoio. Abra a ficha de um projeto para ver todos os PDFs, as imagens e os vídeos dele. Os documentos abrem num leitor dentro da própria galeria.</p>
+      </div>
+      <ul class="linhas" id="linhas"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape gutter">
+  <p>Fabiano Nicaretta · Cursando Análise e Desenvolvimento de Sistemas no Cesusc</p>
+</footer>
+
+<dialog class="leitor" id="leitor" aria-labelledby="leitor-titulo">
+  <div class="leitor-topo">
+    <h3 id="leitor-titulo"></h3>
+    <span class="rotulo" id="leitor-info"></span>
+    <button class="fechar" type="button" id="leitor-fechar" aria-label="Fechar leitor">×</button>
+  </div>
+  <div class="leitor-corpo" id="leitor-corpo"></div>
+</dialog>
+
+<dialog class="ficha" id="ficha" aria-labelledby="ficha-titulo">
+  <button class="fechar" type="button" id="fechar" aria-label="Fechar">×</button>
+  <div id="ficha-conteudo"></div>
+  <div class="rolagem" id="rolagem" aria-hidden="true"><span>Role para ver mais</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+</dialog>
+
+<script>
+(()=>{
+const PROJETOS=[
+  {id:"oraculo",nome:"Oráculo Particular",tipo:"App e baralho de autoconhecimento",cor:"c-pessego",
+   img:"img/oraculo/carta-astronauta.png",x:-600,y:70,
+   resumo:"Um baralho físico de 36 arquétipos junguianos, feito com as fotos de cada pessoa, ligado a um diário digital privado. A página apresenta o produto, os planos e a filosofia anti-ruído do app.",
+   ia:"Claude",formato:"Landing page de produto",
+   tags:["Identidade visual","Arquitetura de produto","Modelo de negócio","Front-end"],
+   link:"https://claude.ai/artifact/ULdGYxaZtEoYphWHLbZT5p",
+   docs:[
+     {href:"docs/oraculo-plano-de-negocios.pdf",nome:"Plano de Negócios",info:"15 págs · 2,6 MB"},
+     {href:"docs/oraculo-meu-baralho-pessoal.pdf",nome:"Meu Baralho Pessoal: cartas para imprimir",info:"4 págs · 3,4 MB"},
+     {href:"docs/oraculo-gramatica-dos-simbolos.pdf",nome:"Gramática dos símbolos",info:"1 pág"},
+     {href:"docs/oraculo-cartas-por-temporada.pdf",nome:"Cartas: uma por temporada",info:"1 pág"},
+     {href:"docs/oraculo-temporada-2-figuras.pdf",nome:"Temporada II: Figuras",info:"1 pág"},
+     {href:"docs/oraculo-temporada-3-elementos-e-ciclos.pdf",nome:"Temporada III: Elementos e Ciclos",info:"1 pág"}],
+   midia:[
+     {src:"img/oraculo/ecossistema-phygital.webp",alt:"Infográfico: visão geral do ecossistema phygital"},
+     {src:"img/oraculo/mapa-mental.webp",alt:"Mapa mental do projeto: conceito, público e lock-in"},
+     {src:"img/oraculo/temporada-1-mundo-interior.webp",alt:"Temporada I, Mundo Interior: os 12 símbolos"},
+     {src:"img/oraculo/carta-astronauta.png",alt:"Carta com o monograma OP sobre um astronauta e uma galáxia"},
+     {src:"img/oraculo/carta-beija-flor.webp",alt:"Carta com o monograma OP sobre um beija-flor"},
+     {src:"img/oraculo/carta-arqueiro.webp",alt:"Carta com o monograma OP sobre um arqueiro"},
+     {src:"img/oraculo/carta-cavalo.webp",alt:"Carta com o monograma OP sobre uma estátua de cavalo"},
+     {src:"img/oraculo/carta-vaca.webp",alt:"Carta com o monograma OP sobre uma escultura de vaca pintada"},
+     {src:"img/oraculo/carta-folhas.webp",alt:"Carta com o monograma OP sobre uma mão entre folhas"},
+     {src:"img/oraculo/ilustracao-mao.jpg",alt:"Ilustração de uma mão aberta sobre fundo violeta"}]},
+  {id:"wanted",nome:"WANTED",tipo:"Rede social física",cor:"c-tinta",
+   img:"img/wanted/cartaz.jpg",x:600,y:70,
+   resumo:"Uma rede social física de contracultura. A pessoa faz a ficha no filtro policial e compra uma camiseta, mas recebe o rosto de outro fora-da-lei: um desconhecido veste você em algum lugar do país.",
+   ia:"Gemini Canvas",formato:"Landing page e web app MVP",
+   tags:["Conceito de marca","Copywriting","Simulador de match","Front-end"],
+   pagina:"mvp/wanted.html",
+   video:{src:"media/wanted-manifesto.mp4",nome:"Manifesto WANTED"},
+   docs:[],
+   midia:[
+     {src:"img/wanted/cartaz.jpg",alt:"Cartaz WANTED: dois fichados segurando placas"},
+     {src:"img/wanted/processo.jpg",alt:"O processo WANTED: o delito, o algoritmo e a captura"},
+     {src:"img/wanted/estampa-01-mugshot.jpg",alt:"Estampa Mugshot 0427: modelo veste camiseta off-white com rosto fichado e régua de altura"},
+     {src:"img/wanted/estampa-02-stranger.jpg",alt:"Estampa ID Stranger: modelo veste camiseta preta com retrato em retícula e fita de isolamento"},     {src:"img/wanted/estampa-04-outside.jpg",alt:"Estampa Outside the System: modelo veste camiseta amarela com fitas de isolamento"},
+     {src:"img/wanted/estampa-05-rebel-match.jpg",alt:"Estampa The Rebel Match: modelo veste camiseta cinza com dois fichados lado a lado"}]},
+  {id:"cupom",nome:"Cupom Maníacos",tipo:"Projeto Integrador · ADS",cor:"c-areia",
+   img:"img/cupom.png",x:-360,y:115,
+   resumo:"Plataforma de monitoramento de ofertas orientada à intenção de compra. A pessoa diz o que quer e quanto quer pagar; o sistema compara o custo final entre lojas e avisa uma única vez quando o preço chega.",
+   ia:"Claude",formato:"Apresentação interativa",
+   tags:["Pesquisa de mercado","Design de produto","Bot de ofertas","Simulação interativa"],
+   link:"https://claude.ai/artifact/SHB3g21GkaFD7EpeGf81xs",
+   docs:[
+     {href:"docs/cupom-arquitetura-do-ecossistema.pdf",nome:"Arquitetura do Ecossistema de Ofertas",info:"14 págs · 2,0 MB"},
+     {href:"docs/cupom-maniacos-smart-bot.pdf",nome:"Smart Bot",info:"10 págs · 1,0 MB"}]},
+  {id:"sos",nome:"S.O.S.",tipo:"Sistema Operacional Sidarta",cor:"c-nevoa",
+   img:"projetos/sos-produto.webp",x:120,y:135,
+   resumo:"Um colar de protetores auriculares de silicone vermelho, apresentado como manifesto contra o ruído digital. A página simula um terminal e oferece duas portas: o kit de design ou o atalho do EPI industrial.",
+   ia:"IA generativa",formato:"Página-manifesto",
+   tags:["Design de produto físico","Narrativa","Front-end"],
+   link:"https://claude.ai/artifact/HKQDaVLAAKtZcqG6XKaxZ6",pagina:"projetos/sos.html",
+   docs:[
+     {href:"docs/sos-tarja-preta.pdf",nome:"Tarja Preta: protocolo de intervenção",info:"13 págs · 1,6 MB"},
+     {href:"docs/sos-manual-de-desprogramacao.pdf",nome:"Manual de Desprogramação da Escuta Coletiva",info:"13 págs · 1,2 MB"},
+     {href:"docs/sos-system-protocol-v2.pdf",nome:"System Protocol: patch notes v2.0",info:"14 págs · 1,2 MB"},
+     {href:"docs/sos-sidarta-relatorio.pdf",nome:"Relatório S.O.S. Sidarta",info:"3 págs"}],
+   specs:[
+     {nome:"S.O.S. (Sistema Operacional Sidarta)",desc:"Kit de desprogramação mental com protetores auriculares de silicone vermelho e um manifesto filosófico.",obj:"Cessar a projeção externa, reduzir o ruído dopaminérgico e ativar o observador interno.",canal:"Hotsite (venda de design), guerrilha urbana com lambe-lambe, centros de meditação e links de afiliados para EPIs industriais.",custo:"R$ 180,00 na versão design, ou R$ 5,00 a R$ 12,00 na versão industrial (hack)"},
+     {nome:"Protetor auricular vermelho",desc:"Silicone de alta densidade com fio conector, como um fone de ouvido, mas feito para o silêncio.",obj:"Ser a pílula vermelha da audição: interromper a colonização do tímpano por algoritmos e marketing do medo.",canal:"Kit oficial S.O.S. ou compra direta de EPI profissional em plataformas como o Mercado Livre.",custo:"Baixo (industrial) a médio (design)"},
+     {nome:"Manifesto S.O.S.",desc:"Documento impresso em papel jornal não branqueado, com instruções de desprogramação e comandos de uso.",obj:"Oferecer um guia socrático para a individuação e a integração da sombra.",canal:"Incluído no kit S.O.S. ou em PDF gratuito (open source).",custo:"Incluso no kit de R$ 180,00, ou gratuito no digital"},
+     {nome:"Módulo de hack (bypass)",desc:"Link de redirecionamento para comprar protetores auriculares industriais comuns.",obj:"Subverter o elitismo do design e democratizar o acesso ao silêncio com a ferramenta bruta de trabalho.",canal:"Seção dedicada no hotsite do projeto.",custo:"R$ 5,00 a R$ 12,00"},
+     {nome:"Hotsite S.O.S.",desc:"Página brutalista em preto e vermelho com a transcrição integral da criação do projeto.",obj:"Transformar o consumo em ato de consciência e usar o log de criação como pedagogia.",canal:"Internet (navegador).",custo:"Mantido por comissões de afiliados"}],
+   midia:[{src:"projetos/sos-produto.webp",alt:"Colar S.O.S. em uso: cordão vermelho, fecho amarelo e protetores"},
+          {src:"img/sos/cartaz-emergencia-psiquica.jpg",alt:"Cartaz amarelo e preto: aviso de emergência psíquica, o ruído é o vetor da doença"},
+          {src:"img/sos/cartaz-sistema-operacional.jpg",alt:"Cartaz preto com o colar S.O.S.: calar o mundo para ouvir o próprio sangue"},
+          {src:"img/sos/cartaz-anestesia-coletiva.jpg",alt:"Lambe-lambe rasgado: sintoma, anestesia coletiva; tratamento, corte acústico passivo"}]},
+  {id:"hokusai",nome:"Bit Sushi Hokusai",tipo:"Franquia fisital",cor:"c-rosa",
+   img:"img/hokusai.jpg",x:-120,y:135,
+   resumo:"Um takeaway de sushi premium em contêiner de 12 m², operado por um app 1-bit que funciona como pet virtual. Inclui jornada do pedido, mini-game jogável, planta do Micro-Pod e raio-X do investimento.",
+   ia:"Claude",formato:"Pitch de franquia",
+   tags:["UX de app","Game design","Plano de franquia","Análise de CAPEX"],
+   link:"https://claude.ai/artifact/VUzJDNQTmMF7C1j1S9r17T",
+   docs:[
+     {href:"docs/hokusai-franquia-micro-pod.pdf",nome:"Franquia Hokusai: Micro-Pod",info:"15 págs · 2,4 MB"},
+     {href:"docs/hokusai-phygital-sushi.pdf",nome:"Hokusai Phygital Sushi",info:"12 págs · 1,7 MB"},
+     {href:"docs/hokusai-app-ui-e-conceito.pdf",nome:"App UI e conceito",info:"15 págs · 1,5 MB"}]},
+  {id:"vecchietti",nome:"Nova Pele Vecchietti",tipo:"Parceria público-privada · cultura",cor:"c-ocre",
+   img:"img/vecchietti/capa.jpg",x:360,y:115,
+   resumo:"Proposta para o renascimento da Galeria Municipal de Arte Pedro Paulo Vecchietti, no centro histórico de Florianópolis, em parceria com a Dexco Portinari. Cada metro da nova pele é amostra e coleção: a lastra vira tela, a rua entra na galeria e a reforma é financiada via PIC/SC, sem custo de caixa para a Prefeitura. Um parecer jurídico sustenta o modelo e uma coleção de revestimentos celebra a parceria.",
+   ia:"Claude",formato:"Proposta expositiva em nove salas",
+   tags:["Estratégia de parceria","Humanismo de dados","Identidade visual","Modelo fiscal","Parecer jurídico","Coleção de revestimentos"],
+   link:"https://claude.ai/artifact/HYzoyZpjhWtvhxK324kZQ8",
+   docs:[
+     {href:"docs/vecchietti-apresentacao.pdf",nome:"Apresentação: proposta em nove salas",info:"22 págs · 4,1 MB"},
+     {href:"docs/vecchietti-identidade-visual.pdf",nome:"Manual de identidade visual",info:"14 págs · 2,6 MB"},
+     {href:"docs/vecchietti-parecer-juridico.pdf",nome:"Parecer jurídico em linguagem simplificada",info:"5 págs · 0,4 MB"},
+     {href:"docs/vecchietti-colecao-revestimentos.pdf",nome:"Coleção Vecchietti: dez peças de revestimento",info:"12 págs · 2,4 MB"}],
+   midia:[
+     {src:"img/vecchietti/apresentacao-01.jpg",alt:"Capa da apresentação Nova Pele Vecchietti"},
+     {src:"img/vecchietti/apresentacao-05.jpg",alt:"Apresentação, sala 01: o diagnóstico e os fluxos da Praça XV"},
+     {src:"img/vecchietti/apresentacao-12.jpg",alt:"Apresentação, sala 06: a residência artística"},
+     {src:"img/vecchietti/apresentacao-18.jpg",alt:"Apresentação, sala 09: benchmark nacional"},
+     {src:"img/vecchietti/identidade-01.jpg",alt:"Capa do manual de identidade visual"},
+     {src:"img/vecchietti/identidade-07.jpg",alt:"Manual de identidade: sistema de glifos"},
+     {src:"img/vecchietti/identidade-11.jpg",alt:"Manual de identidade: cartaz e bandeira de fachada"},
+     {src:"img/vecchietti/parecer-01.jpg",alt:"Parecer jurídico: a resposta curta"},
+     {src:"img/vecchietti/parecer-02.jpg",alt:"Parecer jurídico: a linha argumentativa"},
+     {src:"img/vecchietti/colecao-01.jpg",alt:"Capa da Coleção Vecchietti de revestimentos"},
+     {src:"img/vecchietti/colecao-03.jpg",alt:"Coleção Vecchietti: as dez peças, um alfabeto"},
+     {src:"img/vecchietti/colecao-07.jpg",alt:"Coleção Vecchietti: peças hachura e cubo branco"},
+     {src:"img/vecchietti/colecao-11.jpg",alt:"Coleção Vecchietti: edição de artista, nove lastras e nove artistas"}]}
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const portal=p=>`<div class="portal">${p.palavra?`<span class="palavra">${esc(p.palavra)}</span>`:`<img src="${p.img}" alt="" loading="lazy">`}</div>`;
+
+/* cartas na mesa */
+const plano=document.getElementById("plano");
+PROJETOS.forEach(p=>{
+  const b=document.createElement("button");
+  b.type="button";b.className="carta "+p.cor;b.dataset.id=p.id;
+  b.style.left=p.x+"px";b.style.top=p.y+"px";
+  b.setAttribute("aria-label",`${p.nome}: abrir ficha do projeto`);
+  b.innerHTML=`<span class="face">${portal(p)}<span class="linha-tipo"><span class="tipo">${esc(p.tipo)}</span>${p.docs&&p.docs.length?`<span class="selo" title="Documentos em PDF">${p.docs.length} PDF</span>`:''}</span><h2>${esc(p.nome)}</h2></span><span class="legenda">${esc(p.formato)} · ${esc(p.ia)}</span>`;
+  plano.appendChild(b);
+});
+
+/* índice */
+const alvo=l=>l.startsWith("http")?' target="_blank" rel="noopener"':' target="_blank"';
+/* projeto com página própria na galeria abre no leitor interno; os demais, no link publicado */
+const abrirProjeto=p=>p.pagina?`<button class="btn cheio" type="button" data-pagina="${p.pagina}" data-nome="${esc(p.nome)}" data-info="Página do projeto">Abrir projeto</button>`:`<a class="btn cheio" href="${p.link}"${alvo(p.link)}>Abrir projeto ↗</a>`;
+document.getElementById("linhas").innerHTML=PROJETOS.map(p=>`
+  <li class="linha">
+    <div><h3><button type="button" data-id="${p.id}">${esc(p.nome)}</button></h3><p>${esc(p.tipo)}</p></div>
+    <p>${esc(p.formato)}</p>
+    <p>Feito com ${esc(p.ia)}</p>
+    <div class="acoes">
+      ${abrirProjeto(p)}
+      ${p.extra?`<button class="btn" type="button" data-pagina="${p.extra.pagina}" data-nome="${esc(p.nome)} · MVP com simulador">MVP</button>`:""}
+      ${p.docs.length===1?`<button class="btn" type="button" data-pdf="${p.docs[0].href}" data-nome="${esc(p.nome)} · ${esc(p.docs[0].nome)}" data-info="${esc(p.docs[0].info)}">Ler PDF</button>`
+        :p.docs.length?`<button class="btn" type="button" data-id="${p.id}">${p.docs.length} PDFs</button>`
+        :p.video?`<button class="btn" type="button" data-id="${p.id}">Vídeo e imagens</button>`
+        :`<span class="btn vazio">PDF em breve</span>`}
+    </div>
+  </li>`).join("");
+
+/* ficha */
+const ficha=document.getElementById("ficha"),conteudo=document.getElementById("ficha-conteudo");
+function abrir(id){
+  const p=PROJETOS.find(x=>x.id===id);if(!p)return;
+  conteudo.innerHTML=`<div class="ficha-grade ${p.cor}">
+    <div class="ficha-arte">${portal(p)}</div>
+    <div class="ficha-corpo">
+      <span class="rotulo">${esc(p.tipo)}</span>
+      <h2 id="ficha-titulo">${esc(p.nome)}</h2>
+      <p>${esc(p.resumo)}</p>
+      <dl class="meta"><dt>Formato</dt><dd>${esc(p.formato)}</dd><dt>Feito com</dt><dd>${esc(p.ia)}</dd></dl>
+      <ul class="tags">${p.tags.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+      <div class="acoes" style="justify-content:flex-start">${abrirProjeto(p)}${p.extra?`<button class="btn" type="button" data-pagina="${p.extra.pagina}" data-nome="${esc(p.nome)} · ${esc(p.extra.nome.replace(/^Ver o /,""))}">${esc(p.extra.nome)}</button>`:""}</div>
+      ${p.video?`<div class="bloco"><span class="rotulo">${esc(p.video.nome)}</span><video class="video" src="${p.video.src}" controls preload="metadata" playsinline></video></div>`:""}
+      ${p.specs?`<div class="bloco"><span class="rotulo">Especificações · ${p.specs.length} componentes</span><ul class="specs">${p.specs.map(s=>`<li><h4>${esc(s.nome)}</h4><p>${esc(s.desc)}</p><dl><dt>Objetivo</dt><dd>${esc(s.obj)}</dd><dt>Canal</dt><dd>${esc(s.canal)}</dd><dt>Custo estimado</dt><dd>${esc(s.custo)}</dd></dl></li>`).join("")}</ul></div>`:""}
+      ${p.docs.length?`<div class="bloco"><span class="rotulo">Documentos do projeto</span><ul class="docs">${p.docs.map(d=>`<li><button type="button" data-pdf="${d.href}" data-nome="${esc(d.nome)}" data-info="${esc(d.info)}"><span>${esc(d.nome)}</span><small>${esc(d.info)} · Ler</small></button></li>`).join("")}</ul></div>`:""}
+      ${p.midia&&p.midia.length?`<div class="bloco"><span class="rotulo">Imagens · ${p.midia.length}</span><div class="midia">${p.midia.map(m=>`<button type="button" data-img="${m.src}" data-nome="${esc(m.alt)}" title="${esc(m.alt)}"><img src="${m.src}" alt="${esc(m.alt)}" loading="lazy"></button>`).join("")}</div></div>`:""}
+    </div></div>`;
+  if(!ficha.open){try{ficha.showModal()}catch(e){ficha.setAttribute("open","")}}
+  ficha.scrollTop=0;requestAnimationFrame(atualizarRolagem);
+  try{history.replaceState(null,"","#"+id)}catch(e){}
+}
+const rolagem=document.getElementById("rolagem");
+function atualizarRolagem(){rolagem.classList.toggle("oculta",ficha.scrollHeight-ficha.clientHeight<40||ficha.scrollTop>60)}
+ficha.addEventListener("scroll",atualizarRolagem,{passive:true});
+function fechar(){if(ficha.open)ficha.close()}
+ficha.addEventListener("close",()=>{try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}});
+document.getElementById("fechar").addEventListener("click",fechar);
+ficha.addEventListener("click",e=>{if(e.target===ficha)fechar()});
+
+/* mesa arrastável (desktop) */
+const mesa=document.getElementById("mesa");
+let ox=0,oy=0,escala=1,ini=null,moveu=false;
+const estreito=()=>matchMedia("(max-width:760px)").matches;
+function aplicar(){plano.style.transform=estreito()?"":`translate(${ox}px,${oy}px) scale(${escala})`}
+function medir(){escala=Math.min(1,mesa.clientWidth/1440,mesa.clientHeight/740);aplicar()}
+mesa.addEventListener("pointerdown",e=>{if(estreito()||e.button!==0)return;ini={x:e.clientX,y:e.clientY,ox,oy};moveu=false});
+window.addEventListener("pointermove",e=>{
+  if(!ini)return;const dx=e.clientX-ini.x,dy=e.clientY-ini.y;
+  if(!moveu&&Math.hypot(dx,dy)>5){moveu=true;mesa.classList.add("arrastando")}
+  if(moveu){const lim=420;ox=Math.max(-lim,Math.min(lim,ini.ox+dx));oy=Math.max(-300,Math.min(300,ini.oy+dy));aplicar()}
+});
+window.addEventListener("pointerup",()=>{ini=null;mesa.classList.remove("arrastando")});
+/* contato: copia o e-mail; se o navegador recusar, seleciona o texto */
+const copiar=document.getElementById("copiar"),email=document.getElementById("email");
+copiar.addEventListener("click",()=>{
+  const feito=()=>{copiar.textContent="Copiado";setTimeout(()=>copiar.textContent="Copiar",1800)};
+  const selecionar=()=>{const r=document.createRange();r.selectNodeContents(email);const s=getSelection();s.removeAllRanges();s.addRange(r);copiar.textContent="Selecionado"};
+  try{navigator.clipboard.writeText(email.textContent).then(feito,selecionar)}catch(e){selecionar()}
+});
+
+/* leitor: PDFs desenhados com PDF.js dentro da página, sem depender do visualizador do navegador */
+const leitor=document.getElementById("leitor"),lCorpo=document.getElementById("leitor-corpo"),
+      lTitulo=document.getElementById("leitor-titulo"),lInfo=document.getElementById("leitor-info");
+const PDFJS="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+let pdfjsPronto=null,leitura=0;
+function script(src){return new Promise((ok,erro)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=erro;document.head.appendChild(s)})}
+function carregarPdfjs(){
+  if(!pdfjsPronto)pdfjsPronto=script(PDFJS+"pdf.min.js").then(()=>script(PDFJS+"pdf.worker.min.js")).then(()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS+"pdf.worker.min.js"});
+  return pdfjsPronto;
+}
+function abrirLeitor(nome,info,href){
+  lTitulo.textContent=nome;lInfo.textContent=info||"";lCorpo.innerHTML="";lCorpo.className="leitor-corpo";lCorpo.scrollTop=0;
+  if(!leitor.open){try{leitor.showModal()}catch(e){leitor.setAttribute("open","")}}
+}
+async function lerPdf(href,nome,info){
+  const minha=++leitura;
+  abrirLeitor(nome,info,href);
+  lCorpo.innerHTML='<p class="leitor-aviso">Carregando o documento…</p>';
+  try{
+    await carregarPdfjs();
+    const doc=await window.pdfjsLib.getDocument({url:href,disableWorker:true}).promise;
+    if(minha!==leitura)return;
+    lCorpo.innerHTML="";lInfo.textContent=`${doc.numPages} ${doc.numPages===1?"página":"páginas"}`;
+    const dpr=Math.min(2,window.devicePixelRatio||1),largura=Math.min(lCorpo.clientWidth-32,1040);
+    for(let i=1;i<=doc.numPages;i++){
+      if(minha!==leitura||!leitor.open)return;
+      const pg=await doc.getPage(i),base=pg.getViewport({scale:1}),vp=pg.getViewport({scale:largura/base.width*dpr});
+      const c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;c.style.width=Math.round(vp.width/dpr)+"px";
+      c.setAttribute("role","img");c.setAttribute("aria-label",`${nome}, página ${i}`);
+      lCorpo.appendChild(c);
+      await pg.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
+    }
+  }catch(err){
+    if(minha!==leitura)return;
+    lCorpo.innerHTML='<p class="leitor-aviso">Não foi possível carregar este documento agora. Feche o leitor e tente de novo em alguns segundos.</p>';
+  }
+}
+function verImagem(src,nome){
+  leitura++;abrirLeitor(nome,"Imagem",src);
+  const img=new Image();img.src=src;img.alt=nome;lCorpo.appendChild(img);
+}
+/* páginas de projeto (como o MVP do WANTED) abertas dentro da galeria, sem depender do compartilhamento de outro link */
+function verPagina(src,nome,info){
+  leitura++;abrirLeitor(nome,info||"Protótipo interativo",src);lCorpo.classList.add("pagina");
+  const f=document.createElement("iframe");f.src=src;f.title=nome;lCorpo.appendChild(f);
+}
+function fecharLeitor(){leitura++;if(leitor.open)leitor.close();lCorpo.innerHTML=""}
+document.getElementById("leitor-fechar").addEventListener("click",fecharLeitor);
+leitor.addEventListener("click",e=>{if(e.target===leitor)fecharLeitor()});
+
+document.addEventListener("click",e=>{
+  const pdf=e.target.closest("[data-pdf]");if(pdf){lerPdf(pdf.dataset.pdf,pdf.dataset.nome,pdf.dataset.info);return}
+  const img=e.target.closest("[data-img]");if(img){verImagem(img.dataset.img,img.dataset.nome);return}
+  const pag=e.target.closest("[data-pagina]");if(pag){verPagina(pag.dataset.pagina,pag.dataset.nome,pag.dataset.info);return}
+  const b=e.target.closest("[data-id]");if(!b)return;
+  if(b.classList.contains("carta")&&moveu){moveu=false;return}
+  abrir(b.dataset.id);
+});
+window.addEventListener("resize",medir);medir();
+
+const h=location.hash.slice(1);if(h&&PROJETOS.some(p=>p.id===h))abrir(h);
+})();
+</script>

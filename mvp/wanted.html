@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANTED [W-N-T-D] // O Pacto dos Fora da Caixa</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <!-- Google Fonts: Anton (Display Stencil/Brutalist) & Space Mono / Courier Prime (Dossier) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        abyss: '#0a0a0a',
+                        dossier: '#f2efe9',
+                        dossierDark: '#e4dfd5',
+                        alertRed: '#e61919',
+                        cautionYellow: '#f5c518',
+                        ink: '#141414'
+                    },
+                    fontFamily: {
+                        display: ['Anton', 'Impact', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                        typewriter: ['Courier Prime', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Textura de Granulação Punk Zine / Papel Policial */
+        .bg-noise {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* Linhas de medição de altura de delegacia (Mugshot Background) */
+        .mugshot-lines {
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 38px,
+                rgba(20, 20, 20, 0.22) 38px,
+                rgba(20, 20, 20, 0.22) 40px
+            );
+        }
+
+        .mugshot-lines-dark {
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 38px,
+                rgba(242, 239, 233, 0.14) 38px,
+                rgba(242, 239, 233, 0.14) 40px
+            );
+        }
+
+        /* Marquee Infinito */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 22s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Carimbo Policial Rotacionado */
+        .stamp-rotate {
+            transform: rotate(-4deg);
+        }
+        .stamp-rotate-right {
+            transform: rotate(3deg);
+        }
+
+        /* Sombra Brutalista Dura */
+        .brutal-shadow {
+            box-shadow: 6px 6px 0px #0a0a0a;
+        }
+        .brutal-shadow-red {
+            box-shadow: 6px 6px 0px #e61919;
+        }
+        .brutal-shadow-yellow {
+            box-shadow: 6px 6px 0px #f5c518;
+        }
+        .brutal-shadow-light {
+            box-shadow: 6px 6px 0px #f2efe9;
+        }
+
+        /* Efeito Halftone / Mugshot P&B */
+        .mugshot-filter {
+            filter: grayscale(100%) contrast(145%) brightness(95%);
+        }
+
+        /* Fita de Isolamento Policial */
+        .caution-stripes {
+            background: repeating-linear-gradient(
+                -45deg,
+                #f5c518,
+                #f5c518 16px,
+                #0a0a0a 16px,
+                #0a0a0a 32px
+            );
+        }
+    </style>
+</head>
+<body class="bg-abyss text-dossier font-mono selection:bg-alertRed selection:text-white overflow-x-hidden">
+
+    <!-- 1. TOP CAUTION TICKER -->
+    <div class="bg-cautionYellow text-abyss border-b-2 border-abyss py-2 overflow-hidden relative z-50">
+        <div class="animate-marquee font-mono text-xs md:text-sm font-bold tracking-widest uppercase whitespace-nowrap">
+            <span class="mx-4">/// WANTED [W-N-T-D] — ARQUIVO CONFIDENCIAL</span>
+            <span class="mx-4">/// FORA DO SISTEMA & FORA DA CAIXA</span>
+            <span class="mx-4">/// VOCÊ NÃO VESTE O PRÓPRIO EGO</span>
+            <span class="mx-4">/// TIRE SEU RETRATO • ASSINE SEU DELITO • VISTA UM CÚMPLICE DESCONHECIDO</span>
+            <span class="mx-4">/// DROP 00: LENDAS FICHADAS DISPONÍVEL</span>
+            <span class="mx-4">/// WANTED [W-N-T-D] — ARQUIVO CONFIDENCIAL</span>
+            <span class="mx-4">/// FORA DO SISTEMA & FORA DA CAIXA</span>
+            <span class="mx-4">/// VOCÊ NÃO VESTE O PRÓPRIO EGO</span>
+            <span class="mx-4">/// TIRE SEU RETRATO • ASSINE SEU DELITO • VISTA UM CÚMPLICE DESCONHECIDO</span>
+            <span class="mx-4">/// DROP 00: LENDAS FICHADAS DISPONÍVEL</span>
+        </div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 bg-abyss/95 backdrop-blur-md border-b-2 border-dossier/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="bg-alertRed text-white font-display text-2xl sm:text-3xl px-3 py-1 tracking-wider border-2 border-dossier brutal-shadow-light group-hover:bg-cautionYellow group-hover:text-abyss transition-colors">
+                    WANTED
+                </div>
+                <div class="hidden sm:flex flex-col text-[10px] leading-tight text-dossier/70 font-typewriter">
+                    <span>CASO Nº 2026-BR</span>
+                    <span class="text-cautionYellow">STATUS: PROCURADO</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-6 text-xs uppercase tracking-wider">
+                <a href="#problema" class="hover:text-cautionYellow transition-colors">01. O Problema & Nicho</a>
+                <a href="#ritual" class="hover:text-cautionYellow transition-colors">02. O Ritual</a>
+                <a href="#simulador" class="text-cautionYellow font-bold underline decoration-2 underline-offset-4">03. Simulador App</a>
+                <a href="#entregas" class="hover:text-cautionYellow transition-colors">04. A Entrega</a>
+                <a href="#drops" class="hover:text-cautionYellow transition-colors">05. Drops & Preços</a>
+                <a href="#manifesto" class="hover:text-cautionYellow transition-colors">06. Manifesto</a>
+            </nav>
+
+            <!-- Action CTA -->
+            <div class="flex items-center gap-3">
+                <a href="#simulador" class="bg-dossier text-abyss font-bold text-xs sm:text-sm px-4 py-2.5 border-2 border-dossier hover:bg-alertRed hover:text-white hover:border-alertRed transition-all brutal-shadow-red uppercase tracking-tighter">
+                    [ FICHAR MEU PERFIL ]
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION (A IDEIA CENTRAL) -->
+    <section class="relative mugshot-lines-dark bg-noise border-b-4 border-dossier py-12 md:py-24 overflow-hidden">
+        <!-- Height Markers Left Side -->
+        <div class="hidden xl:flex flex-col justify-between absolute left-4 top-12 bottom-12 text-xs font-typewriter text-dossier/30 select-none pointer-events-none">
+            <span>1.90m —</span>
+            <span>1.80m —</span>
+            <span>1.70m —</span>
+            <span>1.60m —</span>
+            <span>1.50m —</span>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Copy -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-alertRed/20 border border-alertRed text-alertRed px-3 py-1 text-xs font-bold uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-alertRed animate-ping"></span>
+                        REDE SOCIAL FÍSICA DE CONTRACULTURA
+                    </div>
+
+                    <h1 class="font-display text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight uppercase text-dossier">
+                        NINGUÉM QUE VALE A PENA SER <span class="bg-cautionYellow text-abyss px-2">ENCONTRADO</span> VIVE DENTRO DA CAIXA.
+                    </h1>
+
+                    <p class="font-typewriter text-base sm:text-lg md:text-xl text-dossier/85 leading-relaxed border-l-4 border-alertRed pl-4">
+                        Na <strong>WANTED</strong>, quebramos o espelho da vaidade. Você bate sua foto no nosso filtro de fichamento policial, grava sua rebeldia na placa e compra uma camiseta. 
+                        <span class="text-cautionYellow font-bold underline">Mas você não recebe a camiseta com o seu próprio rosto.</span> 
+                        O algoritmo cruza a sua mente com a de outro fora-da-lei: você veste um desconhecido, e alguém no país veste você.
+                    </p>
+
+                    <!-- Key Concept Pills -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="bg-ink border border-dossier/30 p-3 rounded">
+                            <div class="text-alertRed font-bold text-xs uppercase">// REGRA 01</div>
+                            <div class="text-sm font-bold mt-1">Troca Cruzada P2P</div>
+                            <div class="text-xs text-dossier/60 mt-0.5">Proibido vestir o próprio ego.</div>
+                        </div>
+                        <div class="bg-ink border border-dossier/30 p-3 rounded">
+                            <div class="text-cautionYellow font-bold text-xs uppercase">// REGRA 02</div>
+                            <div class="text-sm font-bold mt-1">Match Semântico</div>
+                            <div class="text-xs text-dossier/60 mt-0.5">Cruzamento por afinidade de manifesto.</div>
+                        </div>
+                        <div class="bg-ink border border-dossier/30 p-3 rounded">
+                            <div class="text-dossier font-bold text-xs uppercase">// REGRA 03</div>
+                            <div class="text-sm font-bold mt-1">Corte Off-Size</div>
+                            <div class="text-xs text-dossier/60 mt-0.5">Unissex pesado • Grade P, M, G.</div>
+                        </div>
+                    </div>
+
+                    <!-- Hero CTAs -->
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#simulador" class="bg-alertRed text-white font-display text-xl tracking-wider px-8 py-4 border-2 border-dossier brutal-shadow-light hover:bg-cautionYellow hover:text-abyss hover:border-abyss transition-all uppercase flex items-center gap-3">
+                            <i class="ph-bold ph-camera text-2xl"></i>
+                            TESTAR FICHAMENTO AGORA
+                        </a>
+                        <a href="#ritual" class="bg-transparent text-dossier font-mono text-sm font-bold px-6 py-4 border-2 border-dossier hover:bg-dossier hover:text-abyss transition-all uppercase flex items-center gap-2">
+                            ENTENDER A MECÂNICA <i class="ph-bold ph-arrow-down"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Visual Card (The Swap Concept) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="bg-dossier text-abyss p-5 sm:p-6 border-4 border-abyss brutal-shadow-red relative rounded-sm">
+                        <!-- Top Dossier Stamp -->
+                        <div class="flex justify-between items-center border-b-2 border-abyss pb-3 mb-4">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest block text-abyss/60">PRONTUÁRIO DE TROCA CRUZADA</span>
+                                <span class="font-display text-xl tracking-wide">EVIDÊNCIA #00492-X</span>
+                            </div>
+                            <span class="bg-alertRed text-white text-xs font-bold px-2.5 py-1 stamp-rotate uppercase">CONFIDENCIAL</span>
+                        </div>
+
+                        <!-- Dual Swap Showcase -->
+                        <div class="grid grid-cols-2 gap-4 items-center relative">
+                            <!-- Card 1: Your Photo Sent -->
+                            <div class="bg-white border-2 border-abyss p-2.5 relative mugshot-lines">
+                                <div class="text-[10px] font-bold bg-abyss text-dossier px-1.5 py-0.5 inline-block mb-1.5">VOCÊ ENVIA SUA FOTO</div>
+                                <div class="aspect-[4/5] bg-zinc-900 relative overflow-hidden border border-abyss flex flex-col justify-between p-2">
+                                    <!-- Height lines overlay -->
+                                    <div class="w-full flex justify-between text-[9px] text-white/50 font-mono">
+                                        <span>1.80m</span><span>///</span>
+                                    </div>
+                                    <!-- SVG Rebel Silhouette -->
+                                    <svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto text-dossier fill-current opacity-90">
+                                        <circle cx="50" cy="32" r="18"/>
+                                        <path d="M20 92 C20 62, 80 62, 80 92 Z"/>
+                                    </svg>
+                                    <!-- Mugshot Placard -->
+                                    <div class="bg-abyss border-2 border-white p-1.5 text-center">
+                                        <div class="text-[7px] text-cautionYellow tracking-widest uppercase">WANTED // ID-881</div>
+                                        <div class="font-mono font-bold text-white text-[10px] leading-tight uppercase">"FORA DO MOLDE"</div>
+                                    </div>
+                                </div>
+                                <p class="text-[10px] font-typewriter mt-2 text-center leading-tight">
+                                    Vai para o peito de um cúmplice em <strong>São Paulo, SP</strong>
+                                </p>
+                            </div>
+
+                            <!-- Exchange Arrow Badge -->
+                            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-cautionYellow text-abyss border-2 border-abyss w-11 h-11 rounded-full flex items-center justify-center shadow-lg">
+                                <i class="ph-bold ph-arrows-left-right text-xl"></i>
+                            </div>
+
+                            <!-- Card 2: The T-shirt You Receive -->
+                            <div class="bg-white border-2 border-abyss p-2.5 relative">
+                                <div class="text-[10px] font-bold bg-alertRed text-white px-1.5 py-0.5 inline-block mb-1.5">VOCÊ RECEBE EM CASA</div>
+                                <div class="aspect-[4/5] bg-zinc-950 relative overflow-hidden border border-abyss flex flex-col items-center justify-center p-2">
+                                    <!-- T-Shirt Graphic Mockup -->
+                                    <div class="relative w-full h-full flex flex-col items-center justify-center">
+                                        <div class="text-[8px] text-cautionYellow uppercase font-mono mb-1">OVERSIZED HEAVY 220G</div>
+                                        <!-- Mini Frame inside Tee -->
+                                        <div class="w-4/5 bg-zinc-800 border border-white/40 p-2 text-center mugshot-lines-dark">
+                                            <svg viewBox="0 0 100 100" class="w-14 h-14 mx-auto text-cautionYellow fill-current">
+                                                <circle cx="50" cy="30" r="16"/>
+                                                <path d="M24 88 C24 60, 76 60, 76 88 Z"/>
+                                            </svg>
+                                            <div class="bg-black border border-white px-1 py-0.5 mt-1">
+                                                <span class="text-[8px] text-white font-bold uppercase block">"CAOS CRIATIVO"</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-[10px] font-typewriter mt-2 text-center leading-tight">
+                                    Rosto de <strong>@maya.outlaw</strong> de <strong>Curitiba, PR</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Barcode & Note -->
+                        <div class="mt-4 pt-3 border-t-2 border-dashed border-abyss flex items-center justify-between text-xs font-typewriter">
+                            <span>COMPATIBILIDADE NLP: <strong>94.8%</strong></span>
+                            <span class="font-mono tracking-tighter">|||| |||| || | ||||| |||</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. O PROBLEMA, A SOLUÇÃO E O NICHO -->
+    <section id="problema" class="py-20 bg-dossier text-abyss border-b-4 border-abyss relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl mb-14">
+                <div class="inline-block bg-abyss text-cautionYellow font-mono text-xs font-bold px-3 py-1 uppercase mb-3">
+                    01 // DIAGNÓSTICO DO SISTEMA & DEFINIÇÃO DE NICHO
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl uppercase leading-none tracking-tight">
+                    O PROBLEMA QUE ESTAMOS DESTRUINDO.
+                </h2>
+                <p class="font-typewriter text-base sm:text-lg mt-4 text-abyss/80">
+                    A moda de massa transformou rebeldia em uniforme de shopping, e as redes sociais transformaram a autoexpressão em uma prisão narcisista onde todo mundo só olha para o próprio umbigo.
+                </p>
+            </div>
+
+            <!-- Comparison Matrix: O Sistema vs WANTED -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                
+                <!-- O Problema (O Sistema) -->
+                <div class="bg-dossierDark border-4 border-abyss p-6 sm:p-8 relative">
+                    <div class="flex items-center justify-between border-b-2 border-abyss pb-4 mb-6">
+                        <span class="font-display text-2xl sm:text-3xl uppercase text-abyss/70">A CAIXA (MODA & REDES ATUAIS)</span>
+                        <span class="bg-abyss text-white text-xs font-bold px-3 py-1 uppercase">O PROBLEMA</span>
+                    </div>
+                    <ul class="space-y-4 font-typewriter text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-x-circle text-alertRed text-xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong>Hiper-Narcisismo Solitário:</strong> Você posta selfies para validar o próprio ego, mas nunca se conecta de verdade com quem pensa como você.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-x-circle text-alertRed text-xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong>Estampas Vazias e Pasteurizadas:</strong> Milhares de pessoas usando a mesma frase genérica de fast-fashion sem alma e sem história.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-x-circle text-alertRed text-xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong>Rótulos e Padrões Rígidos:</strong> Grades de roupas cheias de regras de gênero e processos previsíveis de compra.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- A Solução (WANTED) -->
+                <div class="bg-abyss text-dossier border-4 border-abyss p-6 sm:p-8 brutal-shadow-red relative">
+                    <div class="flex items-center justify-between border-b-2 border-dossier/30 pb-4 mb-6">
+                        <span class="font-display text-2xl sm:text-3xl uppercase text-cautionYellow">O MOVIMENTO WANTED</span>
+                        <span class="bg-alertRed text-white text-xs font-bold px-3 py-1 uppercase stamp-rotate">A SOLUÇÃO</span>
+                    </div>
+                    <ul class="space-y-4 font-typewriter text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-cautionYellow text-xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong>Descentralização do Ego:</strong> Você entrega seu rosto e seu manifesto ao mundo e passa a carregar a história de outro rebelde no peito.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-cautionYellow text-xl shrink-0 mt-0.5"></i>
+                                <div>
+                                <strong>Tiragem Única & Viva (1 de 1):</strong> Cada camiseta é um registro único gerado pelo encontro algorítmico entre duas pessoas reais.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-cautionYellow text-xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong>Sincronicidade Real:</strong> Ao abrir o pacote confidencial, você descobre quem é o seu par ideológico em outra cidade.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- O NICHO (QUEM SÃO OS PROCURADOS) -->
+            <div class="bg-white border-4 border-abyss p-6 sm:p-10 brutal-shadow">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <span class="text-xs font-bold uppercase tracking-widest text-alertRed block mb-1">// PERFIL DO ALVO</span>
+                        <h3 class="font-display text-3xl sm:text-4xl uppercase leading-tight">
+                            QUEM É O NICHO DA WANTED?
+                        </h3>
+                        <p class="font-typewriter text-sm sm:text-base mt-3 text-abyss/80">
+                            "Procurado" tem duplo sentido: é o <strong>rebelde fora da lei</strong> que recusa o script social, e também <strong>alguém raro que precisa ser encontrado</strong>.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="border-2 border-abyss p-4 bg-dossier/50">
+                            <i class="ph-fill ph-vinyl-record text-3xl text-alertRed"></i>
+                            <h4 class="font-display text-xl uppercase mt-2">Cena Independente & Música</h4>
+                            <p class="font-typewriter text-xs mt-1 text-abyss/80">Artistas, músicos, DJs, produtores e frequentadores do circuito underground, rock, rap e arte urbana.</p>
+                        </div>
+                        <div class="border-2 border-abyss p-4 bg-dossier/50">
+                            <i class="ph-fill ph-paint-brush-broad text-3xl text-alertRed"></i>
+                            <h4 class="font-display text-xl uppercase mt-2">Criativos Fora da Caixa</h4>
+                            <p class="font-typewriter text-xs mt-1 text-abyss/80">Designers, diretores de arte, tatuadores, cineastas e mentes inquietas que rejeitam processos engessados.</p>
+                        </div>
+                        <div class="border-2 border-abyss p-4 bg-dossier/50">
+                            <i class="ph-fill ph-skull text-3xl text-alertRed"></i>
+                            <h4 class="font-display text-xl uppercase mt-2">Colecionadores de Conceito</h4>
+                            <p class="font-typewriter text-xs mt-1 text-abyss/80">Consumidores de streetwear autoral que compram peças pela narrativa, peso de malha e exclusividade radical.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. O RITUAL EM 3 PASSOS (MODO DE CONEXÃO) -->
+    <section id="ritual" class="py-20 bg-abyss text-dossier mugshot-lines-dark border-b-4 border-dossier">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-block bg-cautionYellow text-abyss font-mono text-xs font-bold px-3 py-1 uppercase mb-3">
+                    02 // ARQUITETURA DE CONEXÃO
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight">
+                    COMO FUNCIONA O RITUAL DE TROCA
+                </h2>
+                <p class="font-typewriter text-base sm:text-lg text-dossier/75 mt-3">
+                    Do clique na câmera do celular até a abertura do envelope confidencial na sua porta.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Passo 1 -->
+                <div class="bg-ink border-2 border-dossier p-6 sm:p-8 relative flex flex-col justify-between brutal-shadow-yellow">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-display text-5xl text-cautionYellow">01.</span>
+                            <span class="bg-dossier/10 border border-dossier/30 text-xs px-3 py-1 uppercase font-mono">NO WEB APP</span>
+                        </div>
+                        <h3 class="font-display text-3xl uppercase tracking-wide mb-3">O DELITO (SEU FICHAMENTO)</h3>
+                        <p class="font-typewriter text-sm text-dossier/80 leading-relaxed">
+                            Você faz login, tira sua foto no nosso filtro policial P&B com régua de altura ao fundo e digita sua <strong>frase-manifesto na placa de identificação</strong>. Escolha seu tamanho Off-Size (P, M ou G) e finalize o pedido.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-dossier/20 text-xs font-mono text-cautionYellow flex items-center gap-2">
+                        <i class="ph-bold ph-camera"></i> Filtro Mugshot + Placa Customizável
+                    </div>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="bg-ink border-2 border-dossier p-6 sm:p-8 relative flex flex-col justify-between brutal-shadow-red">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-display text-5xl text-alertRed">02.</span>
+                            <span class="bg-dossier/10 border border-dossier/30 text-xs px-3 py-1 uppercase font-mono">OPEN-SOURCE NLP</span>
+                        </div>
+                        <h3 class="font-display text-3xl uppercase tracking-wide mb-3">O ALGORITMO DE MATCH</h3>
+                        <p class="font-typewriter text-sm text-dossier/80 leading-relaxed">
+                            Nosso motor gratuito (baseado em <code>Sentence-Transformers</code> + similaridade de cosseno e tags de rebeldia) analisa a mensagem da sua placa e encontra no banco de dados outro perfil com vibração compatível ou complementar.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-dossier/20 text-xs font-mono text-alertRed flex items-center gap-2">
+                        <i class="ph-bold ph-cpu"></i> Pareamento Semântico s/ Custo de API
+                    </div>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="bg-ink border-2 border-dossier p-6 sm:p-8 relative flex flex-col justify-between brutal-shadow-light">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-display text-5xl text-dossier">03.</span>
+                            <span class="bg-dossier/10 border border-dossier/30 text-xs px-3 py-1 uppercase font-mono">PRINT ON DEMAND</span>
+                        </div>
+                        <h3 class="font-display text-3xl uppercase tracking-wide mb-3">A CAPTURA (A ENTREGA)</h3>
+                        <p class="font-typewriter text-sm text-dossier/80 leading-relaxed">
+                            Sua foto é estampada na camiseta que vai para o seu cúmplice. E você recebe em casa, dentro de um <strong>Saco de Evidência Lacrado</strong>, a camiseta no seu tamanho estampada com o retrato e a placa de outro fora-da-lei.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-dossier/20 text-xs font-mono text-dossier flex items-center gap-2">
+                        <i class="ph-bold ph-package"></i> Prontuário de Identidade Incluso
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SIMULADOR INTERATIVO DE FICHAMENTO & ALGORITMO DE MATCH (MVP FUNCIONAL) -->
+    <section id="simulador" class="py-20 bg-dossier text-abyss border-b-4 border-abyss relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b-4 border-abyss pb-6 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-alertRed text-white font-mono text-xs font-bold px-3 py-1 uppercase mb-3">
+                        <i class="ph-bold ph-terminal-window"></i> 03 // PROTÓTIPO INTERATIVO DO APP WANTED
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl uppercase leading-none">
+                        SIMULADOR DE FICHAMENTO & MATCH
+                    </h2>
+                </div>
+                <p class="font-typewriter text-sm max-w-md text-abyss/80">
+                    Teste a experiência real agora: customize sua placa de identificação, defina seus parâmetros de rebeldia e rode o algoritmo para descobrir qual camiseta você receberia.
+                </p>
+            </div>
+
+            <!-- Interactive Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- LEFT COLUMN: USER INPUTS & MUGSHOT GENERATOR (7 Cols) -->
+                <div class="lg:col-span-7 bg-white border-4 border-abyss p-6 sm:p-8 brutal-shadow space-y-6">
+                    <div class="flex items-center justify-between border-b-2 border-abyss pb-3">
+                        <span class="font-bold text-sm uppercase tracking-wider">ETAPA A: SEU RETRATO & PLACA DE IDENTIFICAÇÃO</span>
+                        <span class="text-xs font-typewriter bg-cautionYellow px-2 py-0.5 border border-abyss font-bold">CÂMERA ATIVA</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+                        <!-- Live Mugshot Preview Frame -->
+                        <div class="sm:col-span-6">
+                            <div id="mugshotFrame" class="aspect-[4/5] bg-zinc-900 border-4 border-abyss relative overflow-hidden flex flex-col justify-between p-4 mugshot-lines-dark select-none">
+                                <!-- Top Height & Police ID -->
+                                <div class="flex justify-between items-center text-[10px] font-mono text-white/70 z-10">
+                                    <span>DEPT. WANTED BR</span>
+                                    <span id="previewHeightLabel">1.78m —</span>
+                                </div>
+
+                                <!-- Avatar / User Photo Preview -->
+                                <div class="my-auto flex flex-col items-center justify-center z-10 relative">
+                                    <div id="avatarDisplay" class="w-28 h-28 rounded-full bg-zinc-800 border-2 border-white/40 flex items-center justify-center overflow-hidden mugshot-filter">
+                                        <!-- Default SVG Rebel Face -->
+                                        <i id="avatarIcon" class="ph-fill ph-user-focus text-7xl text-dossier"></i>
+                                        <img id="uploadedPhoto" src="" alt="Foto Fichamento" class="hidden w-full h-full object-cover mugshot-filter" />
+                                    </div>
+                                </div>
+
+                                <!-- THE CUSTOMIZABLE MUGSHOT PLACARD -->
+                                <div class="bg-abyss border-2 border-white p-2.5 text-center z-10 shadow-lg">
+                                    <div class="flex justify-between text-[8px] font-mono text-cautionYellow border-b border-white/20 pb-1 mb-1 uppercase">
+                                        <span>PROC #2026</span>
+                                        <span id="placardSizeTag">TAM: G</span>
+                                        <span>BR-OUTLAW</span>
+                                    </div>
+                                    <div id="livePlacardText" class="font-mono font-bold text-white text-xs sm:text-sm tracking-wider uppercase break-words min-h-[20px]">
+                                        DESOBEDIÊNCIA POÉTICA
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls for Photo & Placard -->
+                        <div class="sm:col-span-6 space-y-4">
+                            <!-- Preset or Upload -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase mb-2">1. Escolha seu Arquétipo ou Suba uma Foto:</label>
+                                <div class="grid grid-cols-3 gap-2 mb-2">
+                                    <button type="button" onclick="setAvatarPreset('punk', '1.82m')" class="border-2 border-abyss py-2 px-2 text-xs font-bold bg-dossier hover:bg-cautionYellow transition-colors uppercase">
+                                        Rebelde 01
+                                    </button>
+                                    <button type="button" onclick="setAvatarPreset('cyber', '1.68m')" class="border-2 border-abyss py-2 px-2 text-xs font-bold bg-dossier hover:bg-cautionYellow transition-colors uppercase">
+                                        Rebelde 02
+                                    </button>
+                                    <button type="button" onclick="setAvatarPreset('legend', '1.75m')" class="border-2 border-abyss py-2 px-2 text-xs font-bold bg-dossier hover:bg-cautionYellow transition-colors uppercase">
+                                        Lenda Rock
+                                    </button>
+                                </div>
+                                <label class="cursor-pointer w-full inline-flex items-center justify-center gap-2 bg-abyss text-dossier text-xs font-bold py-2.5 px-3 border-2 border-abyss hover:bg-alertRed transition-colors uppercase">
+                                    <i class="ph-bold ph-upload-simple"></i> Usar Minha Própria Foto
+                                    <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                                </label>
+                            </div>
+
+                            <!-- Placard Input -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase mb-1">
+                                    <label for="manifestoInput">2. Frase na Placa (Seu Manifesto):</label>
+                                    <span id="charCount" class="text-alertRed">21/28</span>
+                                </div>
+                                <input 
+                                    type="text" 
+                                    id="manifestoInput" 
+                                    maxlength="28" 
+                                    value="DESOBEDIÊNCIA POÉTICA"
+                                    placeholder="Ex: NUNCA FUI DO SISTEMA"
+                                    oninput="updatePlacardText(this.value)"
+                                    class="w-full bg-dossier border-2 border-abyss px-3 py-2.5 font-mono text-sm font-bold uppercase focus:outline-none focus:ring-2 focus:ring-alertRed"
+                                >
+                                <p class="text-[11px] font-typewriter text-abyss/70 mt-1">
+                                    *Essa frase será lida pelo algoritmo NLP e impressa no peito de quem receber sua camiseta.
+                                </p>
+                            </div>
+
+                            <!-- Off-Size Selector -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase mb-1.5">3. Modelagem Off-Size Unissex (Seu Tamanho):</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button type="button" onclick="selectSize('P')" id="sizeBtn-P" class="size-btn border-2 border-abyss py-2 font-display text-lg bg-dossier hover:bg-cautionYellow transition-all">
+                                        P <span class="block font-mono text-[9px] font-normal">Amplamente Solta</span>
+                                    </button>
+                                    <button type="button" onclick="selectSize('M')" id="sizeBtn-M" class="size-btn border-2 border-abyss py-2 font-display text-lg bg-dossier hover:bg-cautionYellow transition-all">
+                                        M <span class="block font-mono text-[9px] font-normal">Oversized Padrão</span>
+                                    </button>
+                                    <button type="button" onclick="selectSize('G')" id="sizeBtn-G" class="size-btn border-2 border-abyss py-2 font-display text-lg bg-abyss text-cautionYellow transition-all">
+                                        G <span class="block font-mono text-[9px] font-normal">Extra Heavy Boxy</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Binary Rebel Vectors -->
+                    <div class="pt-4 border-t-2 border-abyss">
+                        <label class="block text-xs font-bold uppercase mb-3">4. Vetores de Cruzamento (Calibragem do Algoritmo):</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <!-- Vector 1 -->
+                            <div class="bg-dossier p-3 border-2 border-abyss">
+                                <span class="text-[10px] font-bold uppercase block text-abyss/60 mb-1">ENERGIA PRIMÁRIA</span>
+                                <select id="vecEnergy" class="w-full bg-white border border-abyss px-2 py-1.5 font-mono text-xs font-bold uppercase">
+                                    <option value="CAOS">BARULHO & CAOS URBANO</option>
+                                    <option value="SILENCIO">SILÊNCIO & ESTRATÉGIA</option>
+                                </select>
+                            </div>
+                            <!-- Vector 2 -->
+                            <div class="bg-dossier p-3 border-2 border-abyss">
+                                <span class="text-[10px] font-bold uppercase block text-abyss/60 mb-1">MATÉRIA-PRIMA</span>
+                                <select id="vecMedium" class="w-full bg-white border border-abyss px-2 py-1.5 font-mono text-xs font-bold uppercase">
+                                    <option value="ANALOGICO">ANALÓGICO / VINIL / RUA</option>
+                                    <option value="DIGITAL">CYBER / GLITCH / CÓDIGO</option>
+                                </select>
+                            </div>
+                            <!-- Vector 3 -->
+                            <div class="bg-dossier p-3 border-2 border-abyss">
+                                <span class="text-[10px] font-bold uppercase block text-abyss/60 mb-1">MODO DE CONEXÃO</span>
+                                <select id="vecMode" class="w-full bg-white border border-abyss px-2 py-1.5 font-mono text-xs font-bold uppercase">
+                                    <option value="AFINIDADE">AFINIDADE (ESPELHO DE ALMA)</option>
+                                    <option value="CONTRASTE">COLISÃO (OPOSTO COMPLEMENTAR)</option>
+                                    <option value="LENDAS">DROP 00: LENDAS DO ROCK</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trigger Match Button -->
+                    <button 
+                        type="button" 
+                        onclick="runWantedAlgorithm()"
+                        class="w-full bg-alertRed text-white font-display text-2xl tracking-wider py-4 border-4 border-abyss brutal-shadow hover:bg-cautionYellow hover:text-abyss transition-all uppercase flex items-center justify-center gap-3"
+                    >
+                        <i class="ph-bold ph-Cpu text-2xl"></i>
+                        [ EXECUTAR ALGORITMO & REVELAR MEU PAR ]
+                    </button>
+                </div>
+
+                <!-- RIGHT COLUMN: ALGORITHM OUTPUT & T-SHIRT YOU RECEIVE (5 Cols) -->
+                <div class="lg:col-span-5 bg-abyss text-dossier border-4 border-abyss p-6 sm:p-8 brutal-shadow-red relative min-h-[540px] flex flex-col justify-between">
+                    
+                    <!-- Terminal Status Bar -->
+                    <div class="flex items-center justify-between border-b border-dossier/30 pb-3 mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-alertRed inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-cautionYellow inline-block"></span>
+                            <span class="text-xs font-mono text-dossier/70">MOTOR_WANTED_NLP v1.4 (FREE/OPEN)</span>
+                        </div>
+                        <span id="matchStatusBadge" class="bg-cautionYellow text-abyss text-[10px] font-bold px-2 py-0.5 uppercase">PRONTO</span>
+                    </div>
+
+                    <!-- Terminal Log Console (Animated during calculation) -->
+                    <div id="terminalConsole" class="hidden bg-black border border-dossier/40 p-4 font-mono text-xs text-green-400 space-y-1.5 my-auto">
+                        <p>> Lendo manifesto da placa...</p>
+                        <p id="logLine1" class="opacity-0">> Vetorizando texto via Sentence-Transformers (Open-Source)...</p>
+                        <p id="logLine2" class="opacity-0">> Calculando Similaridade de Cosseno no banco pgvector...</p>
+                        <p id="logLine3" class="opacity-0 text-cautionYellow">> CÚMPLICE ENCONTRADO FORA DA CAIXA. GERANDO PRONTUÁRIO...</p>
+                    </div>
+
+                    <!-- Matched Result Container -->
+                    <div id="matchResultCard" class="space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] font-mono text-cautionYellow uppercase block">// CAMISETA QUE VOCÊ VAI RECEBER:</span>
+                                <h3 id="matchedName" class="font-display text-3xl uppercase tracking-wide text-white">
+                                    CÚMPLICE: @CAIO.VANDAL
+                                </h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] text-dossier/60 block uppercase">SIMILARIDADE</span>
+                                <span id="matchedScore" class="font-display text-3xl text-alertRed">96.4%</span>
+                            </div>
+                        </div>
+
+                        <!-- T-Shirt Visual Mockup -->
+                        <div class="bg-zinc-900 border-2 border-dossier/40 p-5 relative flex flex-col items-center justify-center">
+                            <span id="matchedTeeSize" class="absolute top-2 left-2 bg-dossier text-abyss text-[10px] font-bold px-2 py-0.5 uppercase">
+                                CAMISETA OFF-SIZE • TAM G
+                            </span>
+                            <span id="matchedCity" class="absolute top-2 right-2 text-[10px] font-typewriter text-cautionYellow">
+                                ORIGEM: BELO HORIZONTE, MG
+                            </span>
+
+                            <!-- Oversized Tee SVG Silhouette with Embedded Mugshot Stamp -->
+                            <div class="mt-6 mb-2 relative w-56 h-60 bg-abyss border-2 border-zinc-700 rounded-t-2xl flex flex-col items-center justify-center p-4 shadow-2xl">
+                                <!-- Collar Ribbing -->
+                                <div class="w-16 h-4 border-b-4 border-zinc-700 rounded-b-full absolute top-0"></div>
+                                
+                                <!-- The Printed Mugshot on the Chest -->
+                                <div class="w-36 bg-zinc-800 border border-white/60 p-2.5 text-center mugshot-lines-dark mt-3">
+                                    <div class="text-[7px] font-mono text-white/60 flex justify-between">
+                                        <span>WANTED</span>
+                                        <span id="matchedHeight">1.81m</span>
+                                    </div>
+                                    <div class="my-1.5">
+                                        <i id="matchedIcon" class="ph-fill ph-skull text-5xl text-dossier"></i>
+                                    </div>
+                                    <div class="bg-black border border-white p-1">
+                                        <span id="matchedPlacard" class="font-mono font-bold text-[9px] text-cautionYellow uppercase block leading-tight">
+                                            "ARTE É BARULHO"
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="text-[8px] font-mono text-zinc-500 mt-2 uppercase">HEAVYWEIGHT COTTON 220G/M²</span>
+                            </div>
+                        </div>
+
+                        <!-- Prontuário de Conexão -->
+                        <div class="bg-ink border-l-4 border-cautionYellow p-3.5 font-typewriter text-xs space-y-1">
+                            <div class="font-bold text-cautionYellow uppercase">POR QUE O ALGORITMO CRUZOU VOCÊS:</div>
+                            <p id="matchedReason" class="text-dossier/85 leading-relaxed">
+                                Ambos rejeitam processos pasteurizados. O seu manifesto sobre "DESOBEDIÊNCIA POÉTICA" convergiu no vetor semântico de contracultura urbana com a placa "ARTE É BARULHO" de @caio.vandal.
+                            </p>
+                        </div>
+
+                        <!-- Checkout Trigger inside Simulator -->
+                        <a href="#drops" class="w-full bg-cautionYellow text-abyss font-bold text-sm py-3.5 px-4 border-2 border-dossier hover:bg-white transition-colors uppercase flex items-center justify-center gap-2 text-center">
+                            <i class="ph-bold ph-shopping-bagOpen text-lg"></i>
+                            GARANTIR ESSA TROCA NO DROP ATUAL (R$ 189)
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. AS ENTREGAS & ENGENHARIA DO PRODUTO -->
+    <section id="entregas" class="py-20 bg-abyss text-dossier border-b-4 border-dossier relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+                <div>
+                    <div class="inline-block bg-alertRed text-white font-mono text-xs font-bold px-3 py-1 uppercase mb-3">
+                        04 // TANGIBILIZAÇÃO & UNBOXING
+                    </div>
+                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl uppercase leading-none">
+                        O QUE CHEGA NAS SUAS MÃOS.
+                    </h2>
+                </div>
+                <p class="font-typewriter text-sm sm:text-base max-w-md text-dossier/75">
+                    Não entregamos uma camiseta promocional. Entregamos uma peça de engenharia *streetwear* pesada dentro de um protocolo policial confidencial.
+                </p>
+            </div>
+
+            <!-- 4 Product Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Entrega 1 -->
+                <div class="bg-ink border-2 border-dossier/40 p-6 flex flex-col justify-between hover:border-cautionYellow transition-colors">
+                    <div>
+                        <div class="w-12 h-12 bg-cautionYellow text-abyss flex items-center justify-center font-display text-2xl mb-4">
+                            01
+                        </div>
+                        <h3 class="font-display text-2xl uppercase tracking-wide mb-2">CAMISETA OFF-SIZE 220G</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-dossier/75 leading-relaxed">
+                            Modelagem ampla unissex padronizada. Malha 100% algodão penteado fio 20.1 de alta gramatura, gola canelada grossa de 3cm que não deforma.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-dossier/20 text-[11px] font-mono text-cautionYellow uppercase">
+                        GRADE ENXUTA: P • M • G
+                    </div>
+                </div>
+
+                <!-- Entrega 2 -->
+                <div class="bg-ink border-2 border-dossier/40 p-6 flex flex-col justify-between hover:border-cautionYellow transition-colors">
+                    <div>
+                        <div class="w-12 h-12 bg-alertRed text-white flex items-center justify-center font-display text-2xl mb-4">
+                            02
+                        </div>
+                        <h3 class="font-display text-2xl uppercase tracking-wide mb-2">ESTAMPA DTG TOQUE ZERO</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-dossier/75 leading-relaxed">
+                            Impressão digital têxtil de alta definição em formato A3 frontal. A tinta penetra na fibra do algodão: estética de serigrafia vintage com respirabilidade total.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-dossier/20 text-[11px] font-mono text-alertRed uppercase">
+                        TIRAGEM 1/1 SOB DEMANDA
+                    </div>
+                </div>
+
+                <!-- Entrega 3 -->
+                <div class="bg-ink border-2 border-dossier/40 p-6 flex flex-col justify-between hover:border-cautionYellow transition-colors">
+                    <div>
+                        <div class="w-12 h-12 bg-dossier text-abyss flex items-center justify-center font-display text-2xl mb-4">
+                            03
+                        </div>
+                        <h3 class="font-display text-2xl uppercase tracking-wide mb-2">SACO DE EVIDÊNCIA LACRADO</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-dossier/75 leading-relaxed">
+                            Sua peça chega dentro de um envelope estilo arquivo de perícia criminal com lacre de segurança vermelho que precisa ser rompido no unboxing.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-dossier/20 text-[11px] font-mono text-dossier uppercase">
+                        EXPERIÊNCIA VIRAL DE ABERTURA
+                    </div>
+                </div>
+
+                <!-- Entrega 4 -->
+                <div class="bg-ink border-2 border-dossier/40 p-6 flex flex-col justify-between hover:border-cautionYellow transition-colors">
+                    <div>
+                        <div class="w-12 h-12 bg-cautionYellow text-abyss flex items-center justify-center font-display text-2xl mb-4">
+                            04
+                        </div>
+                        <h3 class="font-display text-2xl uppercase tracking-wide mb-2">FICHA DO SEU CÚMPLICE</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-dossier/75 leading-relaxed">
+                            Acompanha o cartão físico de prontuário revelando o primeiro nome/@ opcional, a cidade e a taxa de compatibilidade da pessoa que você está vestindo.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-dossier/20 text-[11px] font-mono text-cautionYellow uppercase">
+                        CONEXÃO REAL PÓS-ENTREGA
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. DROPS, COLEÇÕES SAZONAIS & PRECIFICAÇÃO -->
+    <section id="drops" class="py-20 bg-dossier text-abyss border-b-4 border-abyss">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-block bg-abyss text-cautionYellow font-mono text-xs font-bold px-3 py-1 uppercase mb-3">
+                    05 // CALENDÁRIO DE DROPS & INVESTIMENTO
+                </div>
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight">
+                    ESCOLHA SUA MODALIDADE DE CAPTURA
+                </h2>
+                <p class="font-typewriter text-base sm:text-lg text-abyss/80 mt-3">
+                    Dos *mugshots* lendários do rock ao pacote especial de Dia dos Namorados para casais fora da lei.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Card 1: Drop 00 Lendas Fichadas -->
+                <div class="bg-white border-4 border-abyss p-6 sm:p-8 flex flex-col justify-between brutal-shadow relative">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-abyss text-white text-xs font-bold px-3 py-1 uppercase">SEMENTE DO BANCO</span>
+                            <span class="font-mono text-xs font-bold text-alertRed">EDIÇÃO LIMITADA</span>
+                        </div>
+                        <h3 class="font-display text-3xl uppercase">DROP 00: LENDAS FICHADAS</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-abyss/80 mt-2">
+                            Para os primeiros a entrarem no circuito: você envia sua foto para o banco de dados e pode receber um *mugshot* histórico de cantores e ícones rebeldes que já foram presos — com a placa reescrita pelo nosso manifesto.
+                        </p>
+                        <div class="my-6 py-4 border-y-2 border-dashed border-abyss">
+                            <span class="text-xs font-mono uppercase block text-abyss/60">VALOR DE LANÇAMENTO</span>
+                            <div class="font-display text-5xl text-abyss mt-1">R$ 189<span class="text-xl font-mono">,00</span></div>
+                            <span class="text-[11px] font-typewriter text-abyss/70">+ Frete fixo nacional ou 3x de R$ 63,00</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs font-typewriter mb-8">
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-alertRed"></i> 1x Camiseta Off-Size 220g (P, M ou G)</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-alertRed"></i> Sua foto entra no circuito para outro comprador</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-alertRed"></i> Chance de receber Ícones da Música ou Influenciadores</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-alertRed"></i> Envelope de Evidência Policial Lacrado</li>
+                        </ul>
+                    </div>
+                    <button onclick="openOrderModal('DROP 00: LENDAS FICHADAS', 'R$ 189,00')" class="w-full bg-abyss text-white font-display text-xl tracking-wider py-3.5 border-2 border-abyss hover:bg-alertRed hover:border-alertRed transition-colors uppercase">
+                        [ FICHAR NO DROP 00 ]
+                    </button>
+                </div>
+
+                <!-- Card 2: Circuito P2P Padrão (Destaque) -->
+                <div class="bg-abyss text-dossier border-4 border-abyss p-6 sm:p-8 flex flex-col justify-between brutal-shadow-red relative transform lg:-translate-y-3">
+                    <div class="absolute -top-4 right-4 bg-cautionYellow text-abyss font-mono text-xs font-bold px-3 py-1 border-2 border-abyss uppercase">
+                        EXPERIÊNCIA OFICIAL WANTED
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-alertRed text-white text-xs font-bold px-3 py-1 uppercase">TROCA P2P PURA</span>
+                            <span class="font-mono text-xs text-cautionYellow">ALGORITMO ATIVO</span>
+                        </div>
+                        <h3 class="font-display text-3xl uppercase text-white">FICHAMENTO INDIVIDUAL</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-dossier/80 mt-2">
+                            A experiência completa da marca: tire sua foto no filtro, escreva sua placa e deixe o algoritmo cruzar seu perfil com outro fora-da-caixa real em qualquer canto do Brasil.
+                        </p>
+                        <div class="my-6 py-4 border-y-2 border-dashed border-dossier/30">
+                            <span class="text-xs font-mono uppercase block text-cautionYellow">INVESTIMENTO ÚNICO</span>
+                            <div class="font-display text-5xl text-white mt-1">R$ 189<span class="text-xl font-mono">,00</span></div>
+                            <span class="text-[11px] font-typewriter text-dossier/70">+ Frete ou 3x de R$ 63,00 sem juros</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs font-typewriter mb-8">
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-cautionYellow"></i> 1x Camiseta Off-Size 220g com rosto do seu Match</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-cautionYellow"></i> Sua camiseta enviada para um cúmplice anônimo</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-cautionYellow"></i> Cartão de Prontuário com @ e cidade do seu par</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-check text-cautionYellow"></i> Acesso ao mural digital de Encontros Wanted</li>
+                        </ul>
+                    </div>
+                    <button onclick="openOrderModal('FICHAMENTO INDIVIDUAL P2P', 'R$ 189,00')" class="w-full bg-alertRed text-white font-display text-xl tracking-wider py-3.5 border-2 border-dossier hover:bg-cautionYellow hover:text-abyss hover:border-abyss transition-colors uppercase">
+                        [ INICIAR MEU FICHAMENTO ]
+                    </button>
+                </div>
+
+                <!-- Card 3: Coleção Sazonal Dia dos Namorados (Pacote Match) -->
+                <div class="bg-white border-4 border-abyss p-6 sm:p-8 flex flex-col justify-between brutal-shadow relative">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-cautionYellow text-abyss border border-abyss text-xs font-bold px-3 py-1 uppercase">COLEÇÃO SAZONAL</span>
+                            <span class="font-mono text-xs font-bold text-abyss">2 CAMISETAS</span>
+                        </div>
+                        <h3 class="font-display text-3xl uppercase">PACOTE MATCH: "CÚMPLICES"</h3>
+                        <p class="font-typewriter text-xs sm:text-sm text-abyss/80 mt-2">
+                            <strong>Especial Dia dos Namorados:</strong> Match fechado entre o casal. Você sobe a sua foto e a pessoa que você ama sobe a dela. Você recebe a camiseta com o rosto e a declaração dela na placa, e ela recebe a sua.
+                        </p>
+                        <div class="my-6 py-4 border-y-2 border-dashed border-abyss">
+                            <span class="text-xs font-mono uppercase block text-alertRed font-bold">COMBO 2 PEÇAS + FRETE GRÁTIS</span>
+                            <div class="font-display text-5xl text-abyss mt-1">R$ 329<span class="text-xl font-mono">,00</span></div>
+                            <span class="text-[11px] font-typewriter text-abyss/70">Economia de R$ 75,00 (Sai R$ 164,50 cada)</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs font-typewriter mb-8">
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-heart text-alertRed"></i> 2x Camisetas Off-Size 220g Cruzadas entre o Casal</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-heart text-alertRed"></i> Código de Link Secreto para o seu par subir a foto</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-heart text-alertRed"></i> Placa customizada com mensagem íntima dos dois</li>
+                            <li class="flex items-center gap-2"><i class="ph-bold ph-heart text-alertRed"></i> Frete Grátis Nacional + Embalagem Dupla de Evidência</li>
+                        </ul>
+                    </div>
+                    <button onclick="openOrderModal('PACOTE CÚMPLICES (CASAL - 2 PEÇAS)', 'R$ 329,00')" class="w-full bg-cautionYellow text-abyss font-display text-xl tracking-wider py-3.5 border-2 border-abyss hover:bg-abyss hover:text-white transition-colors uppercase">
+                        [ FECHAR PACTO DE CASAL ]
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. MANIFESTO & SEEDING DE ARTISTAS / INFLUENCIADORES -->
+    <section id="manifesto" class="py-20 bg-abyss text-dossier mugshot-lines-dark relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Manifesto Box -->
+            <div class="border-4 border-dossier p-8 sm:p-12 bg-ink/95 brutal-shadow-red">
+                <div class="flex flex-wrap justify-between items-center border-b-2 border-dossier/30 pb-4 mb-8 gap-4">
+                    <span class="font-mono text-xs text-cautionYellow uppercase tracking-widest">/// DOCUMENTO DE FUNDAÇÃO — WANTED [W-N-T-D]</span>
+                    <span class="bg-alertRed text-white font-mono text-xs font-bold px-3 py-1 uppercase">REBELION AS A TAG</span>
+                </div>
+
+                <h2 class="font-display text-4xl sm:text-6xl uppercase tracking-tight text-white mb-8 leading-none">
+                    MANIFESTO: O PACTO DOS FORA DA CAIXA.
+                </h2>
+
+                <div class="font-typewriter text-base sm:text-xl leading-relaxed space-y-6 text-dossier/90">
+                    <p>
+                        Eles disseram para você caber no molde. Seguir o fluxo. Aceitar o padrão. Ser previsível, rastreável e igual. 
+                        <strong class="text-cautionYellow">Mas ninguém que vale a pena ser encontrado vive dentro da caixa.</strong>
+                    </p>
+                    <p>
+                        <strong>WANTED</strong> não é sobre se esconder. É sobre ser procurado. É o arquivo vivo dos que rasgaram o manual do sistema.
+                    </p>
+                    <p>
+                        Aqui, o espelho é quebrado: você encara a lente, segura a placa e confessa a sua rebeldia. Mas você não veste o próprio ego. O seu rosto vai para o peito de um cúmplice desconhecido em algum lugar do país. E o manifesto de outro fora-da-lei vem parar na sua pele.
+                    </p>
+                    <p class="text-white font-bold border-l-4 border-alertRed pl-4 py-1">
+                        Não vendemos tecido para cobrir o corpo. Criamos colisões entre estranhos que se recusam a pedir desculpas por quem são.
+                    </p>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-dossier/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="font-display text-2xl tracking-wider text-cautionYellow uppercase">
+                        TIRE SEU RETRATO. ASSINE SEU DELITO. VISTA O INVISÍVEL.
+                    </div>
+                    <a href="#simulador" class="bg-dossier text-abyss font-mono text-xs font-bold px-5 py-3 uppercase hover:bg-alertRed hover:text-white transition-colors text-center">
+                        [ ENTRAR PARA O ARQUIVO ]
+                    </a>
+                </div>
+            </div>
+
+            <!-- Seeding / PR Callout for Singers, Actors & Influencers -->
+            <div class="mt-12 bg-cautionYellow text-abyss border-4 border-dossier p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-1">
+                    <span class="bg-abyss text-cautionYellow text-[10px] font-mono font-bold px-2 py-0.5 uppercase">SEEDING & PR // IMPRENSA E ARTISTAS</span>
+                    <h3 class="font-display text-2xl sm:text-3xl uppercase">CANTOR, ATRIZ, ATOR OU CRIADOR FORA DA CURVA?</h3>
+                    <p class="font-typewriter text-xs sm:text-sm text-abyss/90 max-w-2xl">
+                        Reservamos lotes de *Press Kits Confidenciais* a cada Drop para artistas que representam a rebeldia autêntica. Faça seu fichamento verificado e coloque sua estampa na roleta dos fãs.
+                    </p>
+                </div>
+                <button onclick="openOrderModal('CREDENCIAMENTO ARTISTA / PR SEEDING', 'PRESS KIT')" class="shrink-0 bg-abyss text-white font-mono text-xs font-bold px-6 py-4 border-2 border-abyss hover:bg-alertRed transition-colors uppercase">
+                    [ SOLICITAR PRESS KIT ]
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-abyss text-dossier/60 border-t-2 border-dossier/20 py-12 font-mono text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <span class="bg-alertRed text-white font-display text-xl px-2.5 py-0.5">WANTED</span>
+                <span>© 2026 WANTED STREETWEAR • TODOS OS DELITOS RESERVADOS.</span>
+            </div>
+            <div class="flex gap-6 uppercase">
+                <a href="#problema" class="hover:text-white">O Conceito</a>
+                <a href="#simulador" class="hover:text-white">Web App</a>
+                <a href="#drops" class="hover:text-white">Drops</a>
+                <a href="#manifesto" class="hover:text-white">Manifesto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CUSTOM MODAL (CHECKOUT / CONFIRMAÇÃO DE FICHAMENTO) -->
+    <div id="orderModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-dossier text-abyss border-4 border-abyss max-w-lg w-full p-6 sm:p-8 brutal-shadow-red relative">
+            <button onclick="closeOrderModal()" class="absolute top-4 right-4 w-8 h-8 bg-abyss text-white font-bold flex items-center justify-center hover:bg-alertRed">
+                ✕
+            </button>
+            <div class="text-xs font-mono font-bold text-alertRed uppercase mb-1">// PROTOCOLO DE COMPRA & FICHAMENTO</div>
+            <h3 id="modalTitle" class="font-display text-3xl uppercase">FICHAMENTO INDIVIDUAL</h3>
+            <p class="font-typewriter text-xs text-abyss/80 mt-1">
+                Revise os dados da sua placa configurada no simulador antes de gerar o seu pedido:
+            </p>
+
+            <div class="bg-white border-2 border-abyss p-4 my-5 space-y-2 font-typewriter text-xs">
+                <div class="flex justify-between border-b border-abyss/20 pb-1">
+                    <span class="font-bold">MODALIDADE:</span>
+                    <span id="modalPlanName">FICHAMENTO INDIVIDUAL P2P</span>
+                </div>
+                <div class="flex justify-between border-b border-abyss/20 pb-1">
+                    <span class="font-bold">SUA FRASE NA PLACA:</span>
+                    <span id="modalPlacardValue" class="bg-abyss text-cautionYellow px-1.5 font-mono font-bold">"DESOBEDIÊNCIA POÉTICA"</span>
+                </div>
+                <div class="flex justify-between border-b border-abyss/20 pb-1">
+                    <span class="font-bold">SEU TAMANHO OFF-SIZE:</span>
+                    <span id="modalSizeValue" class="font-bold">TAMANHO G (UNISSEX)</span>
+                </div>
+                <div class="flex justify-between pt-1 text-sm font-bold">
+                    <span>VALOR TOTAL:</span>
+                    <span id="modalPriceValue" class="text-alertRed">R$ 189,00</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase mb-1">Seu E-mail ou @ do Instagram (Para o Cartão de Prontuário):</label>
+                    <input type="text" id="userContactInput" placeholder="@seu.perfil ou seu@email.com" class="w-full bg-white border-2 border-abyss px-3 py-2 font-mono text-xs focus:outline-none">
+                </div>
+                <button onclick="confirmWantedOrder()" class="w-full bg-alertRed text-white font-display text-xl tracking-wider py-3.5 border-2 border-abyss hover:bg-cautionYellow hover:text-abyss transition-colors uppercase">
+                    [ CONFIRMAR DELITO & IR PARA PAGAMENTO ]
+                </button>
+                <div id="orderSuccessMsg" class="hidden bg-abyss text-cautionYellow p-3 text-xs font-mono text-center">
+                    ✓ PRONTUÁRIO REGISTRADO COM SUCESSO! SEU PERFIL ENTROU NA FILA DE CRUZAMENTO DA WANTED.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC FOR THE SIMULATOR & APP MVP -->
+    <script>
+        let currentSize = 'G';
+        let currentManifesto = 'DESOBEDIÊNCIA POÉTICA';
+
+        // Database of Rebel Profiles & Rock Legends for the Open-Source NLP Match Simulation
+        const rebelDatabase = [
+            {
+                name: 'CÚMPLICE: @CAIO.VANDAL',
+                city: 'BELO HORIZONTE, MG',
+                height: '1.81m',
+                placard: '"ARTE É BARULHO"',
+                score: '96.4%',
+                icon: 'ph-skull',
+                mode: 'AFINIDADE',
+                reason: 'Ambos rejeitam processos pasteurizados. O seu manifesto convergiu em 96.4% no vetor semântico de contracultura urbana com a placa "ARTE É BARULHO" de @caio.vandal.'
+            },
+            {
+                name: 'CÚMPLICE: @LUNA.NOIR',
+                city: 'SÃO PAULO, SP',
+                height: '1.66m',
+                placard: '"FORA DO ALGORITMO"',
+                score: '94.8%',
+                icon: 'ph-lightning',
+                mode: 'AFINIDADE',
+                reason: 'Pareamento por código de ruptura digital. A sua placa ativou alta similaridade de cosseno com o manifesto anti-sistema de @luna.noir registrado na madrugada.'
+            },
+            {
+                name: 'CÚMPLICE: @DANTE.808',
+                city: 'PORTO ALEGRE, RS',
+                height: '1.79m',
+                placard: '"SILÊNCIO CORTANTE"',
+                score: '91.2%',
+                icon: 'ph-eye-slash',
+                mode: 'CONTRASTE',
+                reason: 'Colisão de opostos complementares: sua energia de manifesto encontrou o contraponto exato na estética minimalista e subterrânea de @dante.808.'
+            },
+            {
+                name: 'LENDA #01: DAVID B. (1976)',
+                city: 'ROCHESTER, NY // ARQUIVO',
+                height: '1.78m',
+                placard: '"STARMAN OUTLAW"',
+                score: '99.1%',
+                icon: 'ph-star-four',
+                mode: 'LENDAS',
+                reason: 'SEMENTE LENDÁRIA CAPTURADA! Você deu match com o icônico mugshot histórico do Camaleão do Rock de 1976, peça inaugural do Drop 00 da WANTED.'
+            },
+            {
+                name: 'LENDA #02: JOHNNY C. (1965)',
+                city: 'EL PASO, TX // ARQUIVO',
+                height: '1.88m',
+                placard: '"MAN IN BLACK"',
+                score: '98.7%',
+                icon: 'ph-guitar',
+                mode: 'LENDAS',
+                reason: 'SEMENTE LENDÁRIA CAPTURADA! Seu manifesto rebelde destravou a tiragem especial com o histórico fichamento do Homem de Preto.'
+            }
+        ];
+
+        // Update Live Placard Text
+        function updatePlacardText(val) {
+            const cleanVal = val.trim() === '' ? 'PROCURADO VIVO' : val.toUpperCase();
+            currentManifesto = cleanVal;
+            document.getElementById('livePlacardText').innerText = cleanVal;
+            document.getElementById('charCount').innerText = `${val.length}/28`;
+        }
+
+        // Select Off-Size T-Shirt Size (P, M, G)
+        function selectSize(size) {
+            currentSize = size;
+            ['P', 'M', 'G'].forEach(s => {
+                const btn = document.getElementById(`sizeBtn-${s}`);
+                if (s === size) {
+                    btn.className = 'size-btn border-2 border-abyss py-2 font-display text-lg bg-abyss text-cautionYellow transition-all';
+                } else {
+                    btn.className = 'size-btn border-2 border-abyss py-2 font-display text-lg bg-dossier hover:bg-cautionYellow transition-all';
+                }
+            });
+            document.getElementById('placardSizeTag').innerText = `TAM: ${size}`;
+            document.getElementById('matchedTeeSize').innerText = `CAMISETA OFF-SIZE • TAM ${size}`;
+        }
+
+        // Set Avatar Preset
+        function setAvatarPreset(type, heightStr) {
+            const uploadedImg = document.getElementById('uploadedPhoto');
+            const avatarIcon = document.getElementById('avatarIcon');
+            uploadedImg.classList.add('hidden');
+            avatarIcon.classList.remove('hidden');
+
+            document.getElementById('previewHeightLabel').innerText = `${heightStr} —`;
+
+            if (type === 'punk') {
+                avatarIcon.className = 'ph-fill ph-lightning text-7xl text-cautionYellow';
+            } else if (type === 'cyber') {
+                avatarIcon.className = 'ph-fill ph-eyeglasses text-7xl text-dossier';
+            } else {
+                avatarIcon.className = 'ph-fill ph-microphone-stage text-7xl text-alertRed';
+            }
+        }
+
+        // Handle Real User Photo Upload with Mugshot B&W Filter
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const uploadedImg = document.getElementById('uploadedPhoto');
+                const avatarIcon = document.getElementById('avatarIcon');
+                uploadedImg.src = e.target.result;
+                uploadedImg.classList.remove('hidden');
+                avatarIcon.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Run the Simulated NLP Algorithm
+        function runWantedAlgorithm() {
+            const consoleBox = document.getElementById('terminalConsole');
+            const resultCard = document.getElementById('matchResultCard');
+            const badge = document.getElementById('matchStatusBadge');
+
+            const log1 = document.getElementById('logLine1');
+            const log2 = document.getElementById('logLine2');
+            const log3 = document.getElementById('logLine3');
+
+            // Hide current card and show terminal processing
+            resultCard.classList.add('opacity-20', 'pointer-events-none');
+            consoleBox.classList.remove('hidden');
+            badge.innerText = 'PROCESSANDO NLP...';
+            badge.className = 'bg-alertRed text-white text-[10px] font-bold px-2 py-0.5 uppercase animate-pulse';
+
+            log1.classList.add('opacity-0');
+            log2.classList.add('opacity-0');
+            log3.classList.add('opacity-0');
+
+            setTimeout(() => { log1.classList.remove('opacity-0'); }, 250);
+            setTimeout(() => { log2.classList.remove('opacity-0'); }, 550);
+            setTimeout(() => { log3.classList.remove('opacity-0'); }, 850);
+
+            setTimeout(() => {
+                consoleBox.classList.add('hidden');
+                resultCard.classList.remove('opacity-20', 'pointer-events-none');
+                badge.innerText = 'MATCH CONFIRMADO';
+                badge.className = 'bg-cautionYellow text-abyss text-[10px] font-bold px-2 py-0.5 uppercase';
+
+                // Choose profile based on selected mode or cycle intelligently
+                const selectedMode = document.getElementById('vecMode').value;
+                let pool = rebelDatabase.filter(p => p.mode === selectedMode);
+                if (pool.length === 0) pool = rebelDatabase;
+                const chosen = pool[Math.floor(Math.random() * pool.length)];
+
+                document.getElementById('matchedName').innerText = chosen.name;
+                document.getElementById('matchedCity').innerText = `ORIGEM: ${chosen.city}`;
+                document.getElementById('matchedHeight').innerText = chosen.height;
+                document.getElementById('matchedPlacard').innerText = chosen.placard;
+                document.getElementById('matchedScore').innerText = chosen.score;
+                document.getElementById('matchedIcon').className = `ph-fill ${chosen.icon} text-5xl text-cautionYellow`;
+                document.getElementById('matchedReason').innerText = `${chosen.reason} (Sua placa enviada ao banco: "${currentManifesto}").`;
+                document.getElementById('matchedTeeSize').innerText = `CAMISETA OFF-SIZE • TAM ${currentSize}`;
+            }, 1250);
+        }
+
+        // Modal Handlers
+        function openOrderModal(planName, price) {
+            document.getElementById('modalPlanName').innerText = planName;
+            document.getElementById('modalPriceValue').innerText = price;
+            document.getElementById('modalPlacardValue').innerText = `"${currentManifesto}"`;
+            document.getElementById('modalSizeValue').innerText = `TAMANHO ${currentSize} (OFF-SIZE UNISSEX)`;
+            document.getElementById('orderSuccessMsg').classList.add('hidden');
+            
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function confirmWantedOrder() {
+            const msg = document.getElementById('orderSuccessMsg');
+            msg.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
