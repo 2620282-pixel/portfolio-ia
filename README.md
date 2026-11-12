@@ -1,10 +1,10 @@
 # Portfólio de IA · Fabiano Nicaretta
 
-Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado. Portfólio apresentado na candidatura ao Programa de Trainee da Softplan.
+Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado, e a formação por trás deles. Portfólio apresentado na candidatura ao Programa de Trainee da Softplan.
 
 **Ver a galeria:** https://2620282-pixel.github.io/portfolio-ia/
 
-Contato: fabianonicaretta@gmail.com
+Contato: fabianonicaretta@gmail.com · Portfólio de propaganda: [behance.net/fabianonicaretta](https://www.behance.net/fabianonicaretta)
 
 ## Projetos
 
@@ -16,6 +16,7 @@ Contato: fabianonicaretta@gmail.com
 | **S.O.S. Sidarta** | Sistema operacional Sidarta, produto-manifesto | IA generativa | Página do produto, 4 PDFs e cartazes |
 | **Bit Sushi Hokusai** | Franquia fisital de sushi | Claude | Pitch de franquia, conceito phygital e UI do app · [página do projeto](https://claude.ai/artifact/VUzJDNQTmMF7C1j1S9r17T) |
 | **Nova Pele Vecchietti** | Parceria público-privada para cultura | Claude | Apresentação, identidade visual, parecer jurídico e coleção de revestimentos · [página do projeto](https://claude.ai/artifact/HYzoyZpjhWtvhxK324kZQ8) |
+| **Formação** | Currículo, diplomas e certificados | Claude (diagramação) | Currículo, caderno de certificados 2015–2023, TCC de Psicologia Transpessoal (Arte do Encontro), TCC de Publicidade e apresentação, Alquimia Individual |
 
 ## Como a galeria funciona
 

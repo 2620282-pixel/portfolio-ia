@@ -79,6 +79,7 @@ a.pilula:hover{background:var(--tinta);color:var(--papel)}
 .c-nevoa{--cor:#DAD6D2;--tinta-carta:#1E1A17}
 .c-tinta{--cor:#1E1A17;--tinta-carta:#EFE6DC}
 .c-ocre{--cor:#EDD3A0;--tinta-carta:#1E1A17}
+.c-salvia{--cor:#CBD2BC;--tinta-carta:#1E1A17}
 
 /* índice */
 .indice{padding-block:clamp(48px,7vw,88px)}
@@ -173,7 +174,7 @@ dialog.leitor::backdrop{background:color-mix(in srgb,#1E1A17 55%,transparent);ba
   .carta{position:static;width:auto;transform:none}
   .dica{display:none}
   .dica-toque{display:block;margin-top:14px;color:var(--apoio)}
-  /* cabeçalho em duas linhas: marca + candidatura, depois e-mail + índice */
+  /* cabeçalho em duas linhas: marca + portfólio de propaganda, depois e-mail + índice */
   .topo{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px 8px;padding-block:16px 0}
   .identidade,.nav{display:contents}
   .marca{grid-area:1/1/2/2}
@@ -183,7 +184,7 @@ dialog.leitor::backdrop{background:color-mix(in srgb,#1E1A17 55%,transparent);ba
   .nav .pilula.nav-galeria,.nav .pilula.nav-indice,.nav-extra{display:none}
   .nav .pilula{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 clamp(10px,3.2vw,12px);font-size:10.5px;white-space:nowrap;margin:0!important;justify-self:end}
   .contato{gap:8px}
-  .nav-candidatura{grid-area:1/2/2/4}
+  .nav-propaganda{grid-area:1/2/2/4}
   .copiar{padding:7px 9px;font-size:9.5px}
   .btn{min-height:44px;padding-inline:18px}
   .fechar{width:44px;height:44px}
@@ -211,7 +212,7 @@ a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:v
   <nav class="nav" aria-label="Seções">
     <a class="pilula nav-galeria" href="#mesa">Galeria</a>
     <a class="pilula nav-indice" href="#indice">Índice</a>
-    <a class="pilula nav-candidatura" href="https://softplantrainee.gupy.io/" target="_blank" rel="noopener">Candidatura<span class="nav-extra"> · Trainee</span> ↗</a>
+    <a class="pilula nav-propaganda" href="https://www.behance.net/fabianonicaretta" target="_blank" rel="noopener"><span class="nav-extra">Portfólio de </span>Propaganda ↗</a>
   </nav>
 </header>
 
@@ -220,7 +221,7 @@ a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:v
     <div class="plano" id="plano">
       <div class="centro">
         <h1>Galeria</h1>
-        <p>Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado.</p>
+        <p>Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado, e a formação por trás deles.</p>
         <span class="rotulo dica-toque">Toque numa carta para abrir o projeto</span>
       </div>
     </div>
@@ -262,7 +263,7 @@ a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:v
 (()=>{
 const PROJETOS=[
   {id:"oraculo",nome:"Oráculo Particular",tipo:"App e baralho de autoconhecimento",cor:"c-pessego",
-   img:"img/oraculo/carta-astronauta.png",x:-600,y:70,
+   img:"img/oraculo/carta-astronauta.png",x:-645,y:60,
    resumo:"Um baralho físico de 36 arquétipos junguianos, feito com as fotos de cada pessoa, ligado a um diário digital privado. A página apresenta o produto, os planos e a filosofia anti-ruído do app.",
    ia:"Claude",formato:"Landing page de produto",
    tags:["Identidade visual","Arquitetura de produto","Modelo de negócio","Front-end"],
@@ -286,7 +287,7 @@ const PROJETOS=[
      {src:"img/oraculo/carta-folhas.webp",alt:"Carta com o monograma OP sobre uma mão entre folhas"},
      {src:"img/oraculo/ilustracao-mao.jpg",alt:"Ilustração de uma mão aberta sobre fundo violeta"}]},
   {id:"wanted",nome:"WANTED",tipo:"Rede social física",cor:"c-tinta",
-   img:"img/wanted/cartaz.jpg",x:600,y:70,
+   img:"img/wanted/cartaz.jpg",x:430,y:105,
    resumo:"Uma rede social física de contracultura. A pessoa faz a ficha no filtro policial e compra uma camiseta, mas recebe o rosto de outro fora-da-lei: um desconhecido veste você em algum lugar do país.",
    ia:"Gemini Canvas",formato:"Landing page e web app MVP",
    tags:["Conceito de marca","Copywriting","Simulador de match","Front-end"],
@@ -300,7 +301,7 @@ const PROJETOS=[
      {src:"img/wanted/estampa-02-stranger.jpg",alt:"Estampa ID Stranger: modelo veste camiseta preta com retrato em retícula e fita de isolamento"},     {src:"img/wanted/estampa-04-outside.jpg",alt:"Estampa Outside the System: modelo veste camiseta amarela com fitas de isolamento"},
      {src:"img/wanted/estampa-05-rebel-match.jpg",alt:"Estampa The Rebel Match: modelo veste camiseta cinza com dois fichados lado a lado"}]},
   {id:"cupom",nome:"Cupom Maníacos",tipo:"Projeto Integrador · ADS",cor:"c-areia",
-   img:"img/cupom.png",x:-360,y:115,
+   img:"img/cupom.png",x:-430,y:105,
    resumo:"Plataforma de monitoramento de ofertas orientada à intenção de compra. A pessoa diz o que quer e quanto quer pagar; o sistema compara o custo final entre lojas e avisa uma única vez quando o preço chega.",
    ia:"Claude",formato:"Apresentação interativa",
    tags:["Pesquisa de mercado","Design de produto","Bot de ofertas","Simulação interativa"],
@@ -309,7 +310,7 @@ const PROJETOS=[
      {href:"docs/cupom-arquitetura-do-ecossistema.pdf",nome:"Arquitetura do Ecossistema de Ofertas",info:"14 págs · 2,0 MB"},
      {href:"docs/cupom-maniacos-smart-bot.pdf",nome:"Smart Bot",info:"10 págs · 1,0 MB"}]},
   {id:"sos",nome:"S.O.S.",tipo:"Sistema Operacional Sidarta",cor:"c-nevoa",
-   img:"projetos/sos-produto.webp",x:120,y:135,
+   img:"projetos/sos-produto.webp",x:0,y:148,
    resumo:"Um colar de protetores auriculares de silicone vermelho, apresentado como manifesto contra o ruído digital. A página simula um terminal e oferece duas portas: o kit de design ou o atalho do EPI industrial.",
    ia:"IA generativa",formato:"Página-manifesto",
    tags:["Design de produto físico","Narrativa","Front-end"],
@@ -330,7 +331,7 @@ const PROJETOS=[
           {src:"img/sos/cartaz-sistema-operacional.jpg",alt:"Cartaz preto com o colar S.O.S.: calar o mundo para ouvir o próprio sangue"},
           {src:"img/sos/cartaz-anestesia-coletiva.jpg",alt:"Lambe-lambe rasgado: sintoma, anestesia coletiva; tratamento, corte acústico passivo"}]},
   {id:"hokusai",nome:"Bit Sushi Hokusai",tipo:"Franquia fisital",cor:"c-rosa",
-   img:"img/hokusai.jpg",x:-120,y:135,
+   img:"img/hokusai.jpg",x:-215,y:135,
    resumo:"Um takeaway de sushi premium em contêiner de 12 m², operado por um app 1-bit que funciona como pet virtual. Inclui jornada do pedido, mini-game jogável, planta do Micro-Pod e raio-X do investimento.",
    ia:"Claude",formato:"Pitch de franquia",
    tags:["UX de app","Game design","Plano de franquia","Análise de CAPEX"],
@@ -340,7 +341,7 @@ const PROJETOS=[
      {href:"docs/hokusai-phygital-sushi.pdf",nome:"Hokusai Phygital Sushi",info:"12 págs · 1,7 MB"},
      {href:"docs/hokusai-app-ui-e-conceito.pdf",nome:"App UI e conceito",info:"15 págs · 1,5 MB"}]},
   {id:"vecchietti",nome:"Nova Pele Vecchietti",tipo:"Parceria público-privada · cultura",cor:"c-ocre",
-   img:"img/vecchietti/capa.jpg",x:360,y:115,
+   img:"img/vecchietti/capa.jpg",x:215,y:135,
    resumo:"Proposta para o renascimento da Galeria Municipal de Arte Pedro Paulo Vecchietti, no centro histórico de Florianópolis, em parceria com a Dexco Portinari. Cada metro da nova pele é amostra e coleção: a lastra vira tela, a rua entra na galeria e a reforma é financiada via PIC/SC, sem custo de caixa para a Prefeitura. Um parecer jurídico sustenta o modelo e uma coleção de revestimentos celebra a parceria.",
    ia:"Claude",formato:"Proposta expositiva em nove salas",
    tags:["Estratégia de parceria","Humanismo de dados","Identidade visual","Modelo fiscal","Parecer jurídico","Coleção de revestimentos"],
@@ -363,7 +364,38 @@ const PROJETOS=[
      {src:"img/vecchietti/colecao-01.jpg",alt:"Capa da Coleção Vecchietti de revestimentos"},
      {src:"img/vecchietti/colecao-03.jpg",alt:"Coleção Vecchietti: as dez peças, um alfabeto"},
      {src:"img/vecchietti/colecao-07.jpg",alt:"Coleção Vecchietti: peças hachura e cubo branco"},
-     {src:"img/vecchietti/colecao-11.jpg",alt:"Coleção Vecchietti: edição de artista, nove lastras e nove artistas"}]}
+     {src:"img/vecchietti/colecao-11.jpg",alt:"Coleção Vecchietti: edição de artista, nove lastras e nove artistas"}]},
+  {id:"formacao",nome:"Formação",tipo:"Currículo, diplomas e certificados",cor:"c-salvia",
+   img:"img/formacao/capa.jpg",x:645,y:60,
+   resumo:"O percurso por trás dos projetos: Publicidade e Propaganda na Estácio (2010), especialização em Psicologia Transpessoal na Unipaz (2023) e Análise e Desenvolvimento de Sistemas no Cesusc, em curso. Reúne o currículo, os dois trabalhos de conclusão e os certificados de cursos complementares, endireitados e diagramados com IA num caderno único.",
+   ia:"Claude",formato:"Dossiê de formação",
+   tags:["Currículo","Publicidade e Propaganda","Psicologia Transpessoal","Coaching","Processo criativo","Análise e Desenvolvimento de Sistemas"],
+   leitura:{href:"docs/formacao-curriculo.pdf",nome:"Currículo",info:"2 págs · 0,3 MB",rotulo:"Ler currículo"},
+   docs:[
+     {href:"docs/formacao-curriculo.pdf",nome:"Currículo",info:"2 págs · 0,3 MB"},
+     {href:"docs/formacao-certificados.pdf",nome:"Certificados e cursos, 2015 a 2023",info:"9 págs · 1,4 MB"},
+     {href:"docs/formacao-arte-do-encontro.pdf",nome:"Arte do Encontro: TCC da especialização em Psicologia Transpessoal (Unipaz, 2023)",info:"50 págs · 10,8 MB"},
+     {href:"docs/formacao-alquimia-individual.pdf",nome:"Alquimia Individual & Os Encontros com Patrick de Paul",info:"16 págs · 6,5 MB"},
+     {href:"docs/formacao-tcc-publicidade.pdf",nome:"Museu Efêmero Pampero: TCC de Publicidade e Propaganda (Estácio, 2011)",info:"93 págs · 3,2 MB"},
+     {href:"docs/formacao-tcc-publicidade-apresentacao.pdf",nome:"Apresentação do TCC de Publicidade e Propaganda",info:"27 págs · 2,1 MB"}],
+   midia:[
+     {src:"img/formacao/curriculo-01.jpg",alt:"Currículo, página 1"},
+     {src:"img/formacao/curriculo-02.jpg",alt:"Currículo, página 2"},
+     {src:"img/formacao/cert-00.jpg",alt:"Certificados e cursos: sumário"},
+     {src:"img/formacao/cert-01.jpg",alt:"2015 · Workshop O Processo Criativo, com Charles Watson"},
+     {src:"img/formacao/cert-02.jpg",alt:"2016 · Share 2016: Marketing Digital na Prática"},
+     {src:"img/formacao/cert-03.jpg",alt:"2017 · Professional & Self Coach, IBC"},
+     {src:"img/formacao/cert-04.jpg",alt:"2017 · Leader Coach, IBC"},
+     {src:"img/formacao/cert-05.jpg",alt:"2017 · Life Coach, IBC"},
+     {src:"img/formacao/cert-06.jpg",alt:"2017 · Analista Comportamental, IBC"},
+     {src:"img/formacao/cert-07.jpg",alt:"2017 · Extensão em Professional & Self Coaching, FATO e IBC"},
+     {src:"img/formacao/cert-08.jpg",alt:"2023 · Especialização em Psicologia Transpessoal, Unipaz"},
+     {src:"img/formacao/arte-01.jpg",alt:"Arte do Encontro: capa"},
+     {src:"img/formacao/arte-13.jpg",alt:"Arte do Encontro: A Fênix"},
+     {src:"img/formacao/arte-24.jpg",alt:"Arte do Encontro: O Renascimento"},
+     {src:"img/formacao/alquimia-01.jpg",alt:"Alquimia Individual: capa"},
+     {src:"img/formacao/tcc-01.jpg",alt:"TCC de Publicidade: capa"},
+     {src:"img/formacao/apresentacao-01.jpg",alt:"Apresentação do TCC de Publicidade: capa"}]}
 ];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const portal=p=>`<div class="portal">${p.palavra?`<span class="palavra">${esc(p.palavra)}</span>`:`<img src="${p.img}" alt="" loading="lazy">`}</div>`;
@@ -381,8 +413,8 @@ PROJETOS.forEach(p=>{
 
 /* índice */
 const alvo=l=>l.startsWith("http")?' target="_blank" rel="noopener"':' target="_blank"';
-/* projeto com página própria na galeria abre no leitor interno; os demais, no link publicado */
-const abrirProjeto=p=>p.pagina?`<button class="btn cheio" type="button" data-pagina="${p.pagina}" data-nome="${esc(p.nome)}" data-info="Página do projeto">Abrir projeto</button>`:`<a class="btn cheio" href="${p.link}"${alvo(p.link)}>Abrir projeto ↗</a>`;
+/* projeto com página própria ou PDF principal abre no leitor interno; os demais, no link publicado */
+const abrirProjeto=p=>p.leitura?`<button class="btn cheio" type="button" data-pdf="${p.leitura.href}" data-nome="${esc(p.nome)} · ${esc(p.leitura.nome)}" data-info="${esc(p.leitura.info)}">${esc(p.leitura.rotulo)}</button>`:p.pagina?`<button class="btn cheio" type="button" data-pagina="${p.pagina}" data-nome="${esc(p.nome)}" data-info="Página do projeto">Abrir projeto</button>`:`<a class="btn cheio" href="${p.link}"${alvo(p.link)}>Abrir projeto ↗</a>`;
 document.getElementById("linhas").innerHTML=PROJETOS.map(p=>`
   <li class="linha">
     <div><h3><button type="button" data-id="${p.id}">${esc(p.nome)}</button></h3><p>${esc(p.tipo)}</p></div>
@@ -433,7 +465,7 @@ const mesa=document.getElementById("mesa");
 let ox=0,oy=0,escala=1,ini=null,moveu=false;
 const estreito=()=>matchMedia("(max-width:760px)").matches;
 function aplicar(){plano.style.transform=estreito()?"":`translate(${ox}px,${oy}px) scale(${escala})`}
-function medir(){escala=Math.min(1,mesa.clientWidth/1440,mesa.clientHeight/740);aplicar()}
+function medir(){escala=Math.min(1,mesa.clientWidth/1560,mesa.clientHeight/740);aplicar()}
 mesa.addEventListener("pointerdown",e=>{if(estreito()||e.button!==0)return;ini={x:e.clientX,y:e.clientY,ox,oy};moveu=false});
 window.addEventListener("pointermove",e=>{
   if(!ini)return;const dx=e.clientX-ini.x,dy=e.clientY-ini.y;
