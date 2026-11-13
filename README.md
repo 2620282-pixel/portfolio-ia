@@ -4,7 +4,7 @@ Seis projetos feitos com inteligência artificial, da ideia ao protótipo public
 
 **Ver a galeria:** https://2620282-pixel.github.io/portfolio-ia/
 
-Contato: fabianonicaretta@gmail.com · Redator: [behance.net/fabianonicaretta](https://www.behance.net/fabianonicaretta) · Compositor: [no Spotify](https://open.spotify.com/intl-pt/track/2dQkmG3GD2bFj7zY6MZ96u)
+Contato: fabianonicaretta@gmail.com · Redator: [behance.net/fabianonicaretta](https://www.behance.net/fabianonicaretta) · Compositor: [no Spotify](https://open.spotify.com/intl-pt/track/2dQkmG3GD2bFj7zY6MZ96u) · Pintor: [galeria de pinturas](https://claude.ai/artifact/5fAoK6qigeFsCHojvHMcqh)
 
 ## Projetos
 

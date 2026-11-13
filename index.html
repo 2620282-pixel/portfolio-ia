@@ -174,7 +174,7 @@ dialog.leitor::backdrop{background:color-mix(in srgb,#1E1A17 55%,transparent);ba
   .carta{position:static;width:auto;transform:none}
   .dica{display:none}
   .dica-toque{display:block;margin-top:14px;color:var(--apoio)}
-  /* cabeçalho em três linhas: marca, e-mail, depois redator + compositor */
+  /* cabeçalho em três linhas: marca, e-mail, depois redator + compositor + pintor */
   .topo{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px 8px;padding-block:16px 0}
   .identidade,.nav{display:contents}
   .marca{grid-area:1/1/2/2}
@@ -185,8 +185,7 @@ dialog.leitor::backdrop{background:color-mix(in srgb,#1E1A17 55%,transparent);ba
   .nav .pilula{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 clamp(10px,3.2vw,12px);font-size:10.5px;white-space:nowrap;margin:0!important;justify-self:end}
   .contato{gap:8px}
   .marca{grid-area:1/1/2/4}
-  .topo .nav .pilula.nav-propaganda{grid-area:3/1/4/2;justify-self:start}
-  .topo .nav .pilula.nav-compositor{grid-area:3/2/4/4;justify-self:start}
+  .topo .nav{display:flex;flex-wrap:wrap;gap:8px;grid-area:3/1/4/4}
   .copiar{padding:7px 9px;font-size:9.5px}
   .btn{min-height:44px;padding-inline:18px}
   .fechar{width:44px;height:44px}
@@ -216,6 +215,7 @@ a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:v
     <a class="pilula nav-indice" href="#indice">Índice</a>
     <a class="pilula nav-propaganda" href="https://www.behance.net/fabianonicaretta" target="_blank" rel="noopener">Redator ↗</a>
     <a class="pilula nav-compositor" href="https://open.spotify.com/intl-pt/track/2dQkmG3GD2bFj7zY6MZ96u" target="_blank" rel="noopener">Compositor ↗</a>
+    <a class="pilula nav-pintor" href="https://claude.ai/artifact/5fAoK6qigeFsCHojvHMcqh" target="_blank" rel="noopener">Pintor ↗</a>
   </nav>
 </header>
 
