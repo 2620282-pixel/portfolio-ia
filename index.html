@@ -224,7 +224,7 @@ a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:v
     <div class="plano" id="plano">
       <div class="centro">
         <h1>Galeria</h1>
-        <p>Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado, e a formação por trás deles.</p>
+        <p>Cinco projetos feitos com inteligência artificial, da ideia ao protótipo publicado, e a formação por trás deles.</p>
         <span class="rotulo dica-toque">Toque numa carta para abrir o projeto</span>
       </div>
     </div>
@@ -265,32 +265,8 @@ a.pilula:active,.copiar:active,.btn.cheio:active{background:var(--tinta);color:v
 <script>
 (()=>{
 const PROJETOS=[
-  {id:"oraculo",nome:"Oráculo Particular",tipo:"App e baralho de autoconhecimento",cor:"c-pessego",
-   img:"img/oraculo/carta-astronauta.png",x:-645,y:60,
-   resumo:"Um baralho físico de 36 arquétipos junguianos, feito com as fotos de cada pessoa, ligado a um diário digital privado. A página apresenta o produto, os planos e a filosofia anti-ruído do app.",
-   ia:"Claude",formato:"Landing page de produto",
-   tags:["Identidade visual","Arquitetura de produto","Modelo de negócio","Front-end"],
-   link:"https://claude.ai/artifact/ULdGYxaZtEoYphWHLbZT5p",
-   docs:[
-     {href:"docs/oraculo-plano-de-negocios.pdf",nome:"Plano de Negócios",info:"15 págs · 2,6 MB"},
-     {href:"docs/oraculo-meu-baralho-pessoal.pdf",nome:"Meu Baralho Pessoal: cartas para imprimir",info:"4 págs · 3,4 MB"},
-     {href:"docs/oraculo-gramatica-dos-simbolos.pdf",nome:"Gramática dos símbolos",info:"1 pág"},
-     {href:"docs/oraculo-cartas-por-temporada.pdf",nome:"Cartas: uma por temporada",info:"1 pág"},
-     {href:"docs/oraculo-temporada-2-figuras.pdf",nome:"Temporada II: Figuras",info:"1 pág"},
-     {href:"docs/oraculo-temporada-3-elementos-e-ciclos.pdf",nome:"Temporada III: Elementos e Ciclos",info:"1 pág"}],
-   midia:[
-     {src:"img/oraculo/ecossistema-phygital.webp",alt:"Infográfico: visão geral do ecossistema phygital"},
-     {src:"img/oraculo/mapa-mental.webp",alt:"Mapa mental do projeto: conceito, público e lock-in"},
-     {src:"img/oraculo/temporada-1-mundo-interior.webp",alt:"Temporada I, Mundo Interior: os 12 símbolos"},
-     {src:"img/oraculo/carta-astronauta.png",alt:"Carta com o monograma OP sobre um astronauta e uma galáxia"},
-     {src:"img/oraculo/carta-beija-flor.webp",alt:"Carta com o monograma OP sobre um beija-flor"},
-     {src:"img/oraculo/carta-arqueiro.webp",alt:"Carta com o monograma OP sobre um arqueiro"},
-     {src:"img/oraculo/carta-cavalo.webp",alt:"Carta com o monograma OP sobre uma estátua de cavalo"},
-     {src:"img/oraculo/carta-vaca.webp",alt:"Carta com o monograma OP sobre uma escultura de vaca pintada"},
-     {src:"img/oraculo/carta-folhas.webp",alt:"Carta com o monograma OP sobre uma mão entre folhas"},
-     {src:"img/oraculo/ilustracao-mao.jpg",alt:"Ilustração de uma mão aberta sobre fundo violeta"}]},
   {id:"wanted",nome:"WANTED",tipo:"Rede social física",cor:"c-tinta",
-   img:"img/wanted/cartaz.jpg",x:430,y:105,
+   img:"img/wanted/cartaz.jpg",x:360,y:115,
    resumo:"Uma rede social física de contracultura. A pessoa faz a ficha no filtro policial e compra uma camiseta, mas recebe o rosto de outro fora-da-lei: um desconhecido veste você em algum lugar do país.",
    ia:"Gemini Canvas",formato:"Landing page e web app MVP",
    tags:["Conceito de marca","Copywriting","Simulador de match","Front-end"],
@@ -304,7 +280,7 @@ const PROJETOS=[
      {src:"img/wanted/estampa-02-stranger.jpg",alt:"Estampa ID Stranger: modelo veste camiseta preta com retrato em retícula e fita de isolamento"},     {src:"img/wanted/estampa-04-outside.jpg",alt:"Estampa Outside the System: modelo veste camiseta amarela com fitas de isolamento"},
      {src:"img/wanted/estampa-05-rebel-match.jpg",alt:"Estampa The Rebel Match: modelo veste camiseta cinza com dois fichados lado a lado"}]},
   {id:"cupom",nome:"Cupom Maníacos",tipo:"Projeto Integrador · ADS",cor:"c-areia",
-   img:"img/cupom.png",x:-430,y:105,
+   img:"img/cupom.png",x:-600,y:70,
    resumo:"Plataforma de monitoramento de ofertas orientada à intenção de compra. A pessoa diz o que quer e quanto quer pagar; o sistema compara o custo final entre lojas e avisa uma única vez quando o preço chega.",
    ia:"Claude",formato:"Apresentação interativa",
    tags:["Pesquisa de mercado","Design de produto","Bot de ofertas","Simulação interativa"],
@@ -313,7 +289,7 @@ const PROJETOS=[
      {href:"docs/cupom-arquitetura-do-ecossistema.pdf",nome:"Arquitetura do Ecossistema de Ofertas",info:"14 págs · 2,0 MB"},
      {href:"docs/cupom-maniacos-smart-bot.pdf",nome:"Smart Bot",info:"10 págs · 1,0 MB"}]},
   {id:"sos",nome:"S.O.S.",tipo:"Sistema Operacional Sidarta",cor:"c-nevoa",
-   img:"projetos/sos-produto.webp",x:0,y:148,
+   img:"projetos/sos-produto.webp",x:-120,y:135,
    resumo:"Um colar de protetores auriculares de silicone vermelho, apresentado como manifesto contra o ruído digital. A página simula um terminal e oferece duas portas: o kit de design ou o atalho do EPI industrial.",
    ia:"IA generativa",formato:"Página-manifesto",
    tags:["Design de produto físico","Narrativa","Front-end"],
@@ -334,7 +310,7 @@ const PROJETOS=[
           {src:"img/sos/cartaz-sistema-operacional.jpg",alt:"Cartaz preto com o colar S.O.S.: calar o mundo para ouvir o próprio sangue"},
           {src:"img/sos/cartaz-anestesia-coletiva.jpg",alt:"Lambe-lambe rasgado: sintoma, anestesia coletiva; tratamento, corte acústico passivo"}]},
   {id:"hokusai",nome:"Bit Sushi Hokusai",tipo:"Franquia fisital",cor:"c-rosa",
-   img:"img/hokusai.jpg",x:-215,y:135,
+   img:"img/hokusai.jpg",x:-360,y:115,
    resumo:"Um takeaway de sushi premium em contêiner de 12 m², operado por um app 1-bit que funciona como pet virtual. Inclui jornada do pedido, mini-game jogável, planta do Micro-Pod e raio-X do investimento.",
    ia:"Claude",formato:"Pitch de franquia",
    tags:["UX de app","Game design","Plano de franquia","Análise de CAPEX"],
@@ -344,7 +320,7 @@ const PROJETOS=[
      {href:"docs/hokusai-phygital-sushi.pdf",nome:"Hokusai Phygital Sushi",info:"12 págs · 1,7 MB"},
      {href:"docs/hokusai-app-ui-e-conceito.pdf",nome:"App UI e conceito",info:"15 págs · 1,5 MB"}]},
   {id:"vecchietti",nome:"Nova Pele Vecchietti",tipo:"Parceria público-privada · cultura",cor:"c-ocre",
-   img:"img/vecchietti/capa.jpg",x:215,y:135,
+   img:"img/vecchietti/capa.jpg",x:120,y:135,
    resumo:"Proposta para o renascimento da Galeria Municipal de Arte Pedro Paulo Vecchietti, no centro histórico de Florianópolis, em parceria com a Dexco Portinari. Cada metro da nova pele é amostra e coleção: a lastra vira tela, a rua entra na galeria e a reforma é financiada via PIC/SC, sem custo de caixa para a Prefeitura. Um parecer jurídico sustenta o modelo e uma coleção de revestimentos celebra a parceria.",
    ia:"Claude",formato:"Proposta expositiva em nove salas",
    tags:["Estratégia de parceria","Humanismo de dados","Identidade visual","Modelo fiscal","Parecer jurídico","Coleção de revestimentos"],
@@ -369,7 +345,7 @@ const PROJETOS=[
      {src:"img/vecchietti/colecao-07.jpg",alt:"Coleção Vecchietti: peças hachura e cubo branco"},
      {src:"img/vecchietti/colecao-11.jpg",alt:"Coleção Vecchietti: edição de artista, nove lastras e nove artistas"}]},
   {id:"formacao",nome:"Formação",tipo:"Currículo, diplomas e certificados",cor:"c-salvia",
-   img:"img/formacao/capa.gif",x:645,y:60,
+   img:"img/formacao/capa.gif",x:600,y:70,
    resumo:"O percurso por trás dos projetos: Publicidade e Propaganda na Estácio (2010), especialização em Psicologia Transpessoal na Unipaz (2023) e Análise e Desenvolvimento de Sistemas no Cesusc, em curso. Reúne o currículo, os dois trabalhos de conclusão e os certificados de cursos complementares.",
    ia:"Claude",formato:"Dossiê de formação",
    tags:["Currículo","Publicidade e Propaganda","Psicologia Transpessoal","Coaching","Processo criativo","Análise e Desenvolvimento de Sistemas"],
@@ -468,7 +444,7 @@ const mesa=document.getElementById("mesa");
 let ox=0,oy=0,escala=1,ini=null,moveu=false;
 const estreito=()=>matchMedia("(max-width:760px)").matches;
 function aplicar(){plano.style.transform=estreito()?"":`translate(${ox}px,${oy}px) scale(${escala})`}
-function medir(){escala=Math.min(1,mesa.clientWidth/1560,mesa.clientHeight/740);aplicar()}
+function medir(){escala=Math.min(1,mesa.clientWidth/1440,mesa.clientHeight/740);aplicar()}
 mesa.addEventListener("pointerdown",e=>{if(estreito()||e.button!==0)return;ini={x:e.clientX,y:e.clientY,ox,oy};moveu=false});
 window.addEventListener("pointermove",e=>{
   if(!ini)return;const dx=e.clientX-ini.x,dy=e.clientY-ini.y;

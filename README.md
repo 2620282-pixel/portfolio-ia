@@ -1,6 +1,6 @@
 # Portfólio de IA · Fabiano Nicaretta
 
-Seis projetos feitos com inteligência artificial, da ideia ao protótipo publicado, e a formação por trás deles. Portfólio apresentado na candidatura ao Programa de Trainee da Softplan.
+Cinco projetos feitos com inteligência artificial, da ideia ao protótipo publicado, e a formação por trás deles. Portfólio apresentado na candidatura ao Programa de Trainee da Softplan.
 
 **Ver a galeria:** https://2620282-pixel.github.io/portfolio-ia/
 
@@ -10,7 +10,6 @@ Contato: fabianonicaretta@gmail.com · Redator: [behance.net/fabianonicaretta](h
 
 | Projeto | O que é | Feito com | Material na galeria |
 |---|---|---|---|
-| **Oráculo Particular** | App e baralho de autoconhecimento | Claude | Plano de negócios e 5 PDFs do baralho, cartas e ilustrações · [página do projeto](https://claude.ai/artifact/ULdGYxaZtEoYphWHLbZT5p) |
 | **WANTED** | Rede social física de contracultura | Gemini Canvas | MVP com simulador de match, manifesto em vídeo, cartaz e estampas de camiseta |
 | **Cupom Maníacos** | Projeto Integrador · ADS | Claude | Arquitetura do ecossistema e Smart Bot · [página do projeto](https://claude.ai/artifact/SHB3g21GkaFD7EpeGf81xs) |
 | **S.O.S. Sidarta** | Sistema operacional Sidarta, produto-manifesto | IA generativa | Página do produto, 4 PDFs e cartazes |
